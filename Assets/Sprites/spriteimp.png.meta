@@ -1,0 +1,321 @@
+fileFormatVersion: 2
+guid: 58f3a8ebf38e8034abb4024059787027
+timeCreated: 1525807049
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: spriteimp_0
+    21300002: spriteimp_1
+    21300004: spriteimp_2
+    21300006: spriteimp_3
+    21300008: spriteimp_4
+    21300010: spriteimp_5
+    21300012: spriteimp_6
+    21300014: spriteimp_7
+    21300016: spriteimp_8
+    21300018: spriteimp_9
+    21300020: spriteimp_10
+    21300022: spriteimp_11
+    21300024: spriteimp_12
+    21300026: spriteimp_13
+    21300028: spriteimp_14
+    21300030: spriteimp_15
+    21300032: spriteimp_16
+    21300034: spriteimp_17
+    21300036: spriteimp_18
+    21300038: spriteimp_19
+    21300040: spriteimp_20
+    21300042: spriteimp_21
+    21300044: spriteimp_22
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spriteimp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4160
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_1
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 4160
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_2
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 4160
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3200
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_5
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 3200
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_6
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 3200
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_7
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 3200
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2240
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 2240
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_11
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 2240
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_12
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2240
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1280
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_16
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1280
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spriteimp_17
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 1280
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

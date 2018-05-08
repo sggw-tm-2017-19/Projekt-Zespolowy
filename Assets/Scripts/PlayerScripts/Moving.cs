@@ -9,12 +9,14 @@ public class Moving : MonoBehaviour
     float tempMove, jumpSpeed = 50, moveSpeed = 8;
 	Vector2 jump, move;
 	private bool isGrounded;
+    Animator anim;
 
 	// Use this for initialization
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -28,6 +30,7 @@ public class Moving : MonoBehaviour
                 tempMove = 0;
             if (tempMove < 0) playerSprite.flipX = true;
             if (tempMove > 0) playerSprite.flipX = false;
+            anim.SetFloat("Speed", Mathf.Abs(tempMove));
             move = new Vector2(tempMove, 0);
         }
         rb.transform.Translate(move[0], 0, 0);
@@ -37,12 +40,16 @@ public class Moving : MonoBehaviour
 			rb.AddForce(jump, ForceMode2D.Impulse);
             rb.AddForce(move);
 			isGrounded = false;
+            anim.SetBool("Grounded", isGrounded);
         }
     }
 
 	private void OnCollisionEnter2D(Collision2D col)
 	{
-		if(col.gameObject.layer == 9)
-			isGrounded = true;
-	}
+        if (col.gameObject.layer == 9)
+        {
+            isGrounded = true;
+            anim.SetBool("Grounded", isGrounded);
+        }
+    }
 }
