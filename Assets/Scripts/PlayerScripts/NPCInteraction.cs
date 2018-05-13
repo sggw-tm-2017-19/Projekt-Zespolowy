@@ -22,7 +22,7 @@ void Start ()
 
     public void Test()
     {
-        Player.GetComponent<Moving>().SetCanWalk(false);
+        Player.GetComponent<Moving>().CanWalk = false;
         switch (name)
         {
             case "Królowa":
@@ -38,7 +38,7 @@ void Start ()
                         Debug.Log("blabla");
                         break;
                     default:
-                        Player.GetComponent<Moving>().SetCanWalk(true);
+                        Player.GetComponent<Moving>().CanWalk = true;
                         next = -1;
                         break;
                 }
@@ -50,7 +50,7 @@ void Start ()
                         Debug.Log("Odczep się, nie chce z Tobą gadać");
                         break;
                     default:
-                        Player.GetComponent<Moving>().SetCanWalk(true);
+                        Player.GetComponent<Moving>().CanWalk = true;
                         next = -1;
                         break;
                 }
