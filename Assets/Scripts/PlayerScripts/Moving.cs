@@ -7,7 +7,8 @@ public class Moving : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
-    float tempMove, jumpSpeed, moveSpeed, currEXP, experienceToNextLvl, healthPoints, maxHP, level, vitality, agility, strength, defense, attackSpeed, damage, armor, dodge, statPoints, healthRegen;
+    float tempMove, jumpSpeed, currEXP, experienceToNextLvl, healthPoints, maxHP, level, vitality, agility, strength, defense, damage, armor, dodge, statPoints, healthRegen;
+    decimal moveSpeed, attackSpeed;
     Vector2 jump, move;
     private bool isGrounded, canWalk;
     Animator anim;
@@ -57,7 +58,7 @@ public class Moving : MonoBehaviour
     public void LevelUp()
     {
         level += 1;
-        moveSpeed += 0.1f;
+        moveSpeed += decimal.Parse("0.1");
         maxHP += 10;
         healthPoints += 10;
         statPoints += 1;
@@ -79,8 +80,8 @@ public class Moving : MonoBehaviour
     {
         statPoints -= 1;
         agility += 1;
-        moveSpeed += 0.1f;
-        attackSpeed -= 0.05f;
+        moveSpeed += decimal.Parse("0.1");
+        attackSpeed -= decimal.Parse("0.05");
     }
 
     public void StrengthUp()
@@ -112,7 +113,7 @@ public class Moving : MonoBehaviour
             if (isGrounded)
             {
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-                    tempMove = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
+                    tempMove = Input.GetAxis("Horizontal") * Time.deltaTime * (float)moveSpeed;
                 else
                     tempMove = 0;
                 if (tempMove < 0) playerSprite.flipX = true;
@@ -166,7 +167,7 @@ public class Moving : MonoBehaviour
         }
     }
 
-    public float MoveSpeed
+    public decimal MoveSpeed
     {
         get
         {
@@ -286,7 +287,7 @@ public class Moving : MonoBehaviour
         }
     }
 
-    public float AttackSpeed
+    public decimal AttackSpeed
     {
         get
         {

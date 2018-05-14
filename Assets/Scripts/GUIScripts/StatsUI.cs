@@ -16,9 +16,9 @@ public class StatsUI : MonoBehaviour{
         Stats[0] = GameObject.Find("HPNumber");
         Stats[1] = GameObject.Find("HPRegenNumber");
         Stats[2] = GameObject.Find("EXPNumber");
-        Stats[3] = GameObject.Find("DodgeNumber");  //nazewnictwo?;poprawione
+        Stats[3] = GameObject.Find("DodgeNumber");
         Stats[4] = GameObject.Find("ArmorNumber");
-        Stats[5] = GameObject.Find("DmgNumber"); //nazewnictwo? (dodge z dmg są na odwrót); poprawione
+        Stats[5] = GameObject.Find("DmgNumber");
         Stats[6] = GameObject.Find("MSNumber");
         Stats[7] = GameObject.Find("ASNumber");
     }
@@ -50,13 +50,13 @@ public class StatsUI : MonoBehaviour{
                     Player.GetComponent<Moving>().AgilityUp();
                     attributes[1].text = Player.GetComponent<Moving>().Agility.ToString();
                     break;
-                case 3: //Str
+                case 2: //Str
                     Player.GetComponent<Moving>().StrengthUp();
-                    attributes[3].text = Player.GetComponent<Moving>().Strength.ToString();
+                    attributes[2].text = Player.GetComponent<Moving>().Strength.ToString();
                     break;
-                case 5: //Def
+                case 3: //Def
                     Player.GetComponent<Moving>().DefenseUp();
-                    attributes[5].text = Player.GetComponent<Moving>().Defense.ToString();
+                    attributes[3].text = Player.GetComponent<Moving>().Defense.ToString();
                     break;
                 default:
                     break;
