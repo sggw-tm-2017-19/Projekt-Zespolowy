@@ -14,25 +14,25 @@ public class StatsUI : MonoBehaviour{
         Player = GameObject.Find("Player");
         Stats = new GameObject[8];
         Stats[0] = GameObject.Find("HPNumber");
-        //Stats[1] = GameObject.Find("HPRegenNumber");
+        Stats[1] = GameObject.Find("HPRegenNumber");
         Stats[2] = GameObject.Find("EXPNumber");
-        Stats[3] = GameObject.Find("AvoidNumber");  //nazewnictwo?
+        Stats[3] = GameObject.Find("DodgeNumber");  //nazewnictwo?;poprawione
         Stats[4] = GameObject.Find("ArmorNumber");
-        Stats[5] = GameObject.Find("DmgNumber"); //nazewnictwo? (dodge z dmg są na odwrót)
-        //Stats[6] = GameObject.Find("MSNumber");
-        //Stats[7] = GameObject.Find("ASNumber");
+        Stats[5] = GameObject.Find("DmgNumber"); //nazewnictwo? (dodge z dmg są na odwrót); poprawione
+        Stats[6] = GameObject.Find("MSNumber");
+        Stats[7] = GameObject.Find("ASNumber");
     }
 
     private void Update()
     {
         Stats[0].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().HealthPoints.ToString() + "/" + Player.GetComponent<Moving>().MaxHP.ToString();
-        //Stats[1].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().HealthRegen.ToString();
+        Stats[1].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().HealthRegen.ToString();
         Stats[2].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().CurrEXP.ToString() + "/" + Player.GetComponent<Moving>().ExperienceToNextLvl.ToString();
-        Stats[3].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Damage.ToString();
+        Stats[3].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Dodge.ToString();
         Stats[4].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Armor.ToString();
-        Stats[5].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Dodge.ToString();
-        //Stats[6].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().MoveSpeed.ToString();
-        //Stats[7].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().AttackSpeed.ToString();
+        Stats[5].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Damage.ToString();
+        Stats[6].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().MoveSpeed.ToString();
+        Stats[7].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().AttackSpeed.ToString();
         statsPointNumber.text = Player.GetComponent<Moving>().StatPoints.ToString();
     }
 
