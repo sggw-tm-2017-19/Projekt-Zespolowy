@@ -7,7 +7,7 @@ public class Moving : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
-    float tempMove, jumpSpeed, currEXP, experienceToNextLvl, healthPoints, maxHP, level, vitality, agility, strength, defense, damage, armor, dodge, statPoints, healthRegen;
+    float gold, tempMove, jumpSpeed, currEXP, experienceToNextLvl, healthPoints, maxHP, level, vitality, agility, strength, defense, damage, armor, dodge, statPoints, healthRegen;
     decimal moveSpeed, attackSpeed;
     Vector2 jump, move;
     private bool isGrounded, canWalk;
@@ -24,24 +24,52 @@ public class Moving : MonoBehaviour
         canWalk = true;
         overlapped = new Collider2D[10];
         jumpSpeed = 50;
-        moveSpeed = 4;
-        currEXP = 0;
-        maxHP = 500;
-        healthPoints = maxHP;
-        level = 1;
-        vitality = 0;
-        agility = 0;
-        strength = 0;
-        defense = 0;
-        attackSpeed = 1;
-        damage = 10;
-        armor = 5;
-        dodge = 0;
-        statPoints = 0;
-        healthRegen = 1;
-        experienceToNextLvl = 500;
+        LoadState();
         Thread HPRegen = new Thread(RegenerateHealth);
         HPRegen.Start();
+    }
+
+    public void SaveState()
+    {
+        GlobalControl.Instance.agility = agility;
+        GlobalControl.Instance.armor = armor;
+        GlobalControl.Instance.attackSpeed = attackSpeed;
+        GlobalControl.Instance.currEXP = currEXP;
+        GlobalControl.Instance.damage = damage;
+        GlobalControl.Instance.defense = defense;
+        GlobalControl.Instance.dodge = dodge;
+        GlobalControl.Instance.experienceToNextLvl = experienceToNextLvl;
+        GlobalControl.Instance.gold = gold;
+        GlobalControl.Instance.healthPoints = healthPoints;
+        GlobalControl.Instance.healthRegen = healthRegen;
+        GlobalControl.Instance.level = level;
+        GlobalControl.Instance.maxHP = maxHP;
+        GlobalControl.Instance.moveSpeed = moveSpeed;
+        GlobalControl.Instance.statPoints = statPoints;
+        GlobalControl.Instance.strength = strength;
+        GlobalControl.Instance.vitality = vitality;
+    }
+
+    public void LoadState()
+    {
+        agility = GlobalControl.Instance.agility;
+        armor = GlobalControl.Instance.armor;
+        attackSpeed = GlobalControl.Instance.attackSpeed;
+        currEXP = GlobalControl.Instance.currEXP;
+        damage = GlobalControl.Instance.damage;
+        defense = GlobalControl.Instance.defense;
+        dodge = GlobalControl.Instance.dodge;
+        experienceToNextLvl = GlobalControl.Instance.experienceToNextLvl;
+        gold = GlobalControl.Instance.gold;
+        healthPoints = GlobalControl.Instance.healthPoints;
+        healthRegen = GlobalControl.Instance.healthRegen;
+        level = GlobalControl.Instance.level;
+        maxHP = GlobalControl.Instance.maxHP;
+        moveSpeed = GlobalControl.Instance.moveSpeed;
+        statPoints = GlobalControl.Instance.statPoints;
+        strength = GlobalControl.Instance.strength;
+        vitality = GlobalControl.Instance.vitality;
+        transform.SetPositionAndRotation(new Vector3(GlobalControl.Instance.posX, GlobalControl.Instance.posY, GlobalControl.Instance.posZ), new Quaternion(0,0,0,0));
     }
 
     public void RegenerateHealth()
@@ -64,7 +92,8 @@ public class Moving : MonoBehaviour
         statPoints += 1;
         damage += 5;
         armor += 1;
-        experienceToNextLvl *= 2;
+        experienceToNextLvl *= 6/5f;
+        experienceToNextLvl= Mathf.Ceil(experienceToNextLvl);
     }
 
     public void VitalityUp()
@@ -356,6 +385,18 @@ public class Moving : MonoBehaviour
         set
         {
             healthRegen = value;
+        }
+    }
+
+    public float Gold
+    {
+        get
+        {
+            return gold;
+        }
+        set
+        {
+            gold = value;
         }
     }
 }

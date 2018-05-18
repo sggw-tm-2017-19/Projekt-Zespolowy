@@ -13,12 +13,6 @@ void Start ()
         Player = GameObject.Find("Player");
         next = 0;
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-    }
 
     public void Test()
     {

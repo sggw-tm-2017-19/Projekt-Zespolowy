@@ -13,6 +13,7 @@ public class TestScript : MonoBehaviour {
     }
     void DoTask()
     {
+        Player.GetComponent<Moving>().Gold += 500;
         Player.GetComponent<Moving>().HealthPoints -= 100;
         Player.GetComponent<Moving>().CurrEXP += 100;
     }
