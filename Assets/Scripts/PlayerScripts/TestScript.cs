@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestScript : MonoBehaviour {
+public class TestScript : MonoBehaviour
+{
     GameObject Player;
     public Button btn;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         Player = GameObject.Find("Player");
         btn.onClick.AddListener(DoTask);
     }

@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class MovingWindow : MonoBehaviour, IPointerDownHandler, IDragHandler {
+public class MovingWindow : MonoBehaviour, IPointerDownHandler, IDragHandler
+{
     private Vector2 pointerOffset;
     private RectTransform canvasRectTransform;
     private RectTransform gameObjectRectTransform;
@@ -14,7 +15,7 @@ public class MovingWindow : MonoBehaviour, IPointerDownHandler, IDragHandler {
         canvasRectTransform = canvas.transform as RectTransform;
         gameObjectRectTransform = transform as RectTransform;
     }
-    public void OnPointerDown (PointerEventData data)
+    public void OnPointerDown(PointerEventData data)
     {
         gameObjectRectTransform.SetAsLastSibling();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(gameObjectRectTransform, data.position, data.pressEventCamera, out pointerOffset);
@@ -25,12 +26,12 @@ public class MovingWindow : MonoBehaviour, IPointerDownHandler, IDragHandler {
             return;
 
         Vector2 localPointerPosition;
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle (
-            canvasRectTransform, eventData.position,eventData.pressEventCamera,out localPointerPosition))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRectTransform, eventData.position, eventData.pressEventCamera, out localPointerPosition))
         {
             gameObjectRectTransform.localPosition = localPointerPosition - pointerOffset;
         }
     }
 
-    
+
 }

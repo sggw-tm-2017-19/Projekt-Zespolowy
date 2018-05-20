@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Teleport : MonoBehaviour {
+public class Teleport : MonoBehaviour
+{
 
-    private enum Scenes { Test1, TeleportTest }
+    private enum Scenes { Test1, TeleportTest, Wioska }
     [SerializeField]
     private Scenes destination;
     [SerializeField]
@@ -15,7 +16,7 @@ public class Teleport : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer==8)
+        if (collision.gameObject.layer == 8)
         {
             GameObject.Find("Player").GetComponent<Moving>().SaveState();
             GlobalControl.Instance.posX = posX;

@@ -69,13 +69,13 @@ public class Moving : MonoBehaviour
         statPoints = GlobalControl.Instance.statPoints;
         strength = GlobalControl.Instance.strength;
         vitality = GlobalControl.Instance.vitality;
-        transform.SetPositionAndRotation(new Vector3(GlobalControl.Instance.posX, GlobalControl.Instance.posY, GlobalControl.Instance.posZ), new Quaternion(0,0,0,0));
+        transform.SetPositionAndRotation(new Vector3(GlobalControl.Instance.posX, GlobalControl.Instance.posY, GlobalControl.Instance.posZ), new Quaternion(0, 0, 0, 0));
     }
 
     public void RegenerateHealth()
     {
         healthPoints += healthRegen;
-        if(healthPoints>maxHP)
+        if (healthPoints > maxHP)
         {
             healthPoints = maxHP;
         }
@@ -92,8 +92,8 @@ public class Moving : MonoBehaviour
         statPoints += 1;
         damage += 5;
         armor += 1;
-        experienceToNextLvl *= 6/5f;
-        experienceToNextLvl= Mathf.Ceil(experienceToNextLvl);
+        experienceToNextLvl *= 6 / 5f;
+        experienceToNextLvl = Mathf.Ceil(experienceToNextLvl);
     }
 
     public void VitalityUp()
@@ -131,7 +131,7 @@ public class Moving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currEXP>=experienceToNextLvl)
+        if (currEXP >= experienceToNextLvl)
         {
             currEXP -= experienceToNextLvl;
             LevelUp();

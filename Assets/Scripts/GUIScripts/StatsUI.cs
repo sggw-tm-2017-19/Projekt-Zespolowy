@@ -33,7 +33,7 @@ public class StatsUI : MonoBehaviour
         stats[4].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Armor.ToString();
         stats[5].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Damage.ToString();
         stats[6].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().MoveSpeed.ToString();
-        stats[7].GetComponent<TextMeshProUGUI>().text = Math.Round((1/Player.GetComponent<Moving>().AttackSpeed),3).ToString();
+        stats[7].GetComponent<TextMeshProUGUI>().text = Math.Round((1 / Player.GetComponent<Moving>().AttackSpeed), 3).ToString();
         statsPointNumber.text = Player.GetComponent<Moving>().StatPoints.ToString();
         attributes[0].text = Player.GetComponent<Moving>().Vitality.ToString();
         attributes[1].text = Player.GetComponent<Moving>().Agility.ToString();
