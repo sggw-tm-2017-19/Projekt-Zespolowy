@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class BasicMelee : MonoBehaviour {
 
+    const int idleState = 0;
+    const int moveState = 1;
+    const int basicAttackState = 2;
+    const int strongAttackState = 3;
+    const string animationParameterName = "State";
+
     public float Damage;
     public float Cooldown;
     public float Range;
@@ -16,12 +22,14 @@ public class BasicMelee : MonoBehaviour {
     private new BoxCollider2D collider;
     private GameObject player;
     private float timeCounter;
+    private Animator animator;
 
 
     private void Awake()
     {
         collider = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
     }
 
     // Use this for initialization
@@ -39,27 +47,33 @@ public class BasicMelee : MonoBehaviour {
     {
         if (other.gameObject==player && timeCounter >= Cooldown)
         {
-            StartCoroutine(Attack(other.gameObject));
+            Attack(other.gameObject);
             timeCounter %= Cooldown;
+           
         }
     }
 
-  
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        animator.SetInteger(animationParameterName, idleState);
+    }
+    
 
 
 
     private void SetColliderSize()
     {
-        collider.size += new Vector2(Range, 0);
+        collider.size += new Vector2(Range / 2, 0);
+        collider.offset -= new Vector2(Range / 2, 0);
     }
 
-        private IEnumerator Attack(GameObject gameObject)
+        private void Attack(GameObject gameObject)
     {
-        transform.Rotate(new Vector3(0, 0, 15));
+        animator.SetInteger(animationParameterName, basicAttackState);
         gameObject.SendMessage("TakeDamage", Damage, SendMessageOptions.DontRequireReceiver);
-        yield return new WaitForSeconds(0.1f);
-        transform.Rotate(new Vector3(0, 0, -15));
     }
 
-  
+ 
+
+   
 }
