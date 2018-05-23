@@ -5,30 +5,24 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour {
     public GlobalControl globalControl;
-
-    private float hp;
-    private float armor;
-    private float regeneration;
-    private float maxHP;
-
+    public bool HPEqualsMaxHP = true;
+    
     private bool isDead = false;
 
-    public float HP
-    {
-        get { return hp; }
-
-        set { hp = value; }
-    }
+    public float HP {
+        get { return globalControl.healthPoints; }
+        set { globalControl.healthPoints = value; } }
+    private float MaxHP { get { return globalControl.maxHP; } }
+    private float Armor { get { return globalControl.armor; } }
+    private float Regeneration { get { return globalControl.healthRegen; } }
 
 
 
 
     // Use this for initialization
-    void Start () {
-        maxHP = globalControl.maxHP;
-        HP = maxHP;
-        armor = globalControl.armor;
-        regeneration = globalControl.healthRegen;
+    void Start ()
+    {
+        if (HPEqualsMaxHP) HP = MaxHP;
 	}
 	
 	// Update is called once per frame
@@ -42,7 +36,7 @@ public class HealthController : MonoBehaviour {
     /// <param name="damage">Liczba punktów obrażeń</param>
     public void TakeDamage(float damage)
     {
-        float finalDamage = damage > armor ? damage - armor : 0;
+        float finalDamage = damage > Armor ? damage - Armor : 0;
         HP -= finalDamage;
         if (!isDead && HP <= 0) KillCharacter();
 

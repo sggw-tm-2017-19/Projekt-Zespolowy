@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class BasicMelee : MonoBehaviour {
 
-    const int idleState = 0;
-    const int moveState = 1;
-    const int basicAttackState = 2;
-    const int strongAttackState = 3;
-    const string animationParameterName = "State";
 
     public float Damage;
     public float Cooldown;
@@ -23,7 +18,7 @@ public class BasicMelee : MonoBehaviour {
     private GameObject player;
     private float timeCounter;
     private Animator animator;
-
+    private const string basicAttackTrigger="basicAttack";
 
     private void Awake()
     {
@@ -53,10 +48,7 @@ public class BasicMelee : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        animator.SetInteger(animationParameterName, idleState);
-    }
+
     
 
 
@@ -69,7 +61,7 @@ public class BasicMelee : MonoBehaviour {
 
         private void Attack(GameObject gameObject)
     {
-        animator.SetInteger(animationParameterName, basicAttackState);
+        animator.SetTrigger(basicAttackTrigger);
         gameObject.SendMessage("TakeDamage", Damage, SendMessageOptions.DontRequireReceiver);
     }
 
