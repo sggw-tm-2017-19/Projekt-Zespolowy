@@ -7,14 +7,13 @@ public class NPCInteraction : MonoBehaviour {
 
     GameObject Player;
     public Text dialogueText;
-    GameObject dialogueManager;
+    public GameObject dialogueManager;
     int next;
 
 // Use this for initialization
     void Start ()
     {
         Player = GameObject.Find("Player");
-        dialogueManager = GameObject.Find("DialogueManager");
         next = 0;
 	}
 
@@ -22,6 +21,7 @@ public class NPCInteraction : MonoBehaviour {
     {
         Player.GetComponent<Moving>().CanWalk = false;
         dialogueManager.SetActive(true);
+
         switch (name)
         {
             case "Królowa":
