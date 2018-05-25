@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Threading;
+using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
@@ -29,6 +29,23 @@ public class Moving : MonoBehaviour
         HPRegen.Start();
     }
 
+    /// <summary>
+    /// Regeneracja życia
+    /// </summary>
+    public void RegenerateHealth()
+    {
+        healthPoints += healthRegen;
+        if (healthPoints > maxHP)
+        {
+            healthPoints = maxHP;
+        }
+        Thread.Sleep(1000);
+        RegenerateHealth();
+    }
+
+    /// <summary>
+    /// Zapisuje statystyki do GlobalControl
+    /// </summary>
     public void SaveState()
     {
         GlobalControl.Instance.agility = agility;
@@ -50,6 +67,9 @@ public class Moving : MonoBehaviour
         GlobalControl.Instance.vitality = vitality;
     }
 
+    /// <summary>
+    /// Wczytuje statystyki i położenie z GlobalControl
+    /// </summary>
     public void LoadState()
     {
         agility = GlobalControl.Instance.agility;
@@ -72,17 +92,9 @@ public class Moving : MonoBehaviour
         transform.SetPositionAndRotation(new Vector3(GlobalControl.Instance.posX, GlobalControl.Instance.posY, GlobalControl.Instance.posZ), new Quaternion(0, 0, 0, 0));
     }
 
-    public void RegenerateHealth()
-    {
-        healthPoints += healthRegen;
-        if (healthPoints > maxHP)
-        {
-            healthPoints = maxHP;
-        }
-        Thread.Sleep(1000);
-        RegenerateHealth();
-    }
-
+    /// <summary>
+    /// Zmiana statystyk po wbiciu poziomu
+    /// </summary>
     public void LevelUp()
     {
         level += 1;
@@ -92,10 +104,13 @@ public class Moving : MonoBehaviour
         statPoints += 1;
         damage += 5;
         armor += 1;
-        experienceToNextLvl *= 6 / 5f;
+        experienceToNextLvl *= 3 / 2f;
         experienceToNextLvl = Mathf.Ceil(experienceToNextLvl);
     }
 
+    /// <summary>
+    /// Zmiana statystyk po dodaniu punkty do Vitality
+    /// </summary>
     public void VitalityUp()
     {
         statPoints -= 1;
@@ -105,6 +120,9 @@ public class Moving : MonoBehaviour
         healthRegen += 1;
     }
 
+    /// <summary>
+    /// Zmiana statystyk po dodaniu punkty do Agility
+    /// </summary>
     public void AgilityUp()
     {
         statPoints -= 1;
@@ -113,6 +131,9 @@ public class Moving : MonoBehaviour
         attackSpeed -= decimal.Parse("0.05");
     }
 
+    /// <summary>
+    /// Zmiana statystyk po dodaniu punkty do Strength
+    /// </summary>
     public void StrengthUp()
     {
         statPoints -= 1;
@@ -120,6 +141,9 @@ public class Moving : MonoBehaviour
         damage += 10;
     }
 
+    /// <summary>
+    /// Zmiana statystyk po dodaniu punkty do Defense
+    /// </summary>
     public void DefenseUp()
     {
         statPoints -= 1;
@@ -131,6 +155,7 @@ public class Moving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //sprawdzanie, czy postać nie wbiła poziomu
         if (currEXP >= experienceToNextLvl)
         {
             currEXP -= experienceToNextLvl;
@@ -151,6 +176,7 @@ public class Moving : MonoBehaviour
                 move = new Vector2(tempMove, 0);
             }
             rb.transform.Translate(move[0], 0, 0);
+            anim.SetFloat("vSpeed", rb.velocity.y);
             //Jump
             if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
             {
