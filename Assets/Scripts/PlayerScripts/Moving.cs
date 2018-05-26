@@ -23,7 +23,7 @@ public class Moving : MonoBehaviour
         anim = GetComponent<Animator>();
         canWalk = true;
         overlapped = new Collider2D[10];
-        jumpSpeed = 50;
+        jumpSpeed = 40;
         LoadState();
         Thread HPRegen = new Thread(RegenerateHealth);
         HPRegen.Start();
