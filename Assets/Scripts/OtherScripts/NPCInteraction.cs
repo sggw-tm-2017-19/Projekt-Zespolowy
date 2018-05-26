@@ -29,15 +29,12 @@ public class NPCInteraction : MonoBehaviour {
                 {
                     case 0:
                         dialogueText.text = "Nazywam się " + name.ToString() + ". Witaj " + Player.name;
-                        Debug.Log("Nazywam się " + name.ToString() + ". Witaj " + Player.name);
                         break;
                     case 1:
                         dialogueText.text = "Mam dla Ciebie zadanie.";
-                        Debug.Log("Mam dla Ciebie zadanie.");
                         break;
                     case 2:
                         dialogueText.text = "blabla";
-                        Debug.Log("blabla");
                         break;
                     default:
                         Player.GetComponent<Moving>().CanWalk = true;
@@ -51,7 +48,6 @@ public class NPCInteraction : MonoBehaviour {
                 {
                     case 0:
                         dialogueText.text = "Odczep się, nie chce z Tobą gadać";
-                        Debug.Log("Odczep się, nie chce z Tobą gadać");
                         break;
                     default:
                         Player.GetComponent<Moving>().CanWalk = true;

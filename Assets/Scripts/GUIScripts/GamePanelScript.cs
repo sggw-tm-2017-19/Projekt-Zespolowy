@@ -16,4 +16,8 @@ public class GamePanelScript : MonoBehaviour {
         currHealth.fillAmount = Player.GetComponent<Moving>().HealthPoints/Player.GetComponent<Moving>().MaxHP;
         currExp.fillAmount = Player.GetComponent<Moving>().CurrEXP / Player.GetComponent<Moving>().ExperienceToNextLvl;
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

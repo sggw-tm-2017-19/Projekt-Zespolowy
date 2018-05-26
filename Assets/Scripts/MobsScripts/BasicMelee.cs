@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BasicMelee : MonoBehaviour {
+public class BasicMelee : MonoBehaviour
+{
 
 
     public float Damage;
@@ -12,13 +13,13 @@ public class BasicMelee : MonoBehaviour {
     public float Range;
 
     public Dictionary<float, MonoBehaviour> testDic;
-    
+
 
     private new BoxCollider2D collider;
     private GameObject player;
     private float timeCounter;
     private Animator animator;
-    private const string basicAttackTrigger="basicAttack";
+    private const string basicAttackTrigger = "basicAttack";
 
     private void Awake()
     {
@@ -28,30 +29,26 @@ public class BasicMelee : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         timeCounter = Cooldown;
         SetColliderSize();
-	}
+    }
 
     private void Update()
     {
-        timeCounter+=Time.deltaTime;
+        timeCounter += Time.deltaTime;
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject==player && timeCounter >= Cooldown)
+        if (other.gameObject == player && timeCounter >= Cooldown)
         {
             Attack(other.gameObject);
-            timeCounter %= Cooldown;
-           
+            timeCounter = 0;
+
         }
     }
-
-
-    
-
-
 
     private void SetColliderSize()
     {
@@ -59,13 +56,10 @@ public class BasicMelee : MonoBehaviour {
         collider.offset -= new Vector2(Range / 2, 0);
     }
 
-        private void Attack(GameObject gameObject)
+    private void Attack(GameObject gameObject)
     {
         animator.SetTrigger(basicAttackTrigger);
         gameObject.SendMessage("TakeDamage", Damage, SendMessageOptions.DontRequireReceiver);
     }
 
- 
-
-   
 }
