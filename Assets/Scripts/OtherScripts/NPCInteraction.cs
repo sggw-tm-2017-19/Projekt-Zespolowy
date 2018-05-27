@@ -19,7 +19,7 @@ public class NPCInteraction : MonoBehaviour {
 
     public void Test()
     {
-        Player.GetComponent<Moving>().CanWalk = false;
+        Player.GetComponent<Actions>().CanWalk = false;
         dialogueManager.SetActive(true);
 
         switch (name)
@@ -37,7 +37,7 @@ public class NPCInteraction : MonoBehaviour {
                         dialogueText.text = "blabla";
                         break;
                     default:
-                        Player.GetComponent<Moving>().CanWalk = true;
+                        Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         next = -1;
                         break;
@@ -50,7 +50,7 @@ public class NPCInteraction : MonoBehaviour {
                         dialogueText.text = "Odczep się, nie chce z Tobą gadać";
                         break;
                     default:
-                        Player.GetComponent<Moving>().CanWalk = true;
+                        Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         next = -1;
                         break;

@@ -9,36 +9,26 @@ public class StatsUI : MonoBehaviour
     public List<TextMeshProUGUI> attributes;
     public TextMeshProUGUI statsPointNumber;
     GameObject Player;
-    GameObject[] stats;
     private void Start()
     {
         Player = GameObject.Find("Player");
-        stats = new GameObject[8];
-        stats[0] = GameObject.Find("HPNumber");
-        stats[1] = GameObject.Find("HPRegenNumber");
-        stats[2] = GameObject.Find("EXPNumber");
-        stats[3] = GameObject.Find("DodgeNumber");
-        stats[4] = GameObject.Find("ArmorNumber");
-        stats[5] = GameObject.Find("DmgNumber");
-        stats[6] = GameObject.Find("MSNumber");
-        stats[7] = GameObject.Find("ASNumber");
     }
 
     private void Update()
     {
-        stats[0].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().HealthPoints.ToString() + "/" + Player.GetComponent<Moving>().MaxHP.ToString();
-        stats[1].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().HealthRegen.ToString();
-        stats[2].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().CurrEXP.ToString() + "/" + Player.GetComponent<Moving>().ExperienceToNextLvl.ToString();
-        stats[3].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Dodge.ToString() + "%";
-        stats[4].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Armor.ToString();
-        stats[5].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().Damage.ToString();
-        stats[6].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<Moving>().MoveSpeed.ToString();
-        stats[7].GetComponent<TextMeshProUGUI>().text = Math.Round((1 / Player.GetComponent<Moving>().AttackSpeed), 3).ToString();
-        statsPointNumber.text = Player.GetComponent<Moving>().StatPoints.ToString();
-        attributes[0].text = Player.GetComponent<Moving>().Vitality.ToString();
-        attributes[1].text = Player.GetComponent<Moving>().Agility.ToString();
-        attributes[2].text = Player.GetComponent<Moving>().Strength.ToString();
-        attributes[3].text = Player.GetComponent<Moving>().Defense.ToString();
+        statsPointNumber.text = Player.GetComponent<PlayerStats>().StatPoints.ToString();
+        attributes[0].text = Player.GetComponent<PlayerStats>().Vitality.ToString();
+        attributes[1].text = Player.GetComponent<PlayerStats>().Agility.ToString();
+        attributes[2].text = Player.GetComponent<PlayerStats>().Strength.ToString();
+        attributes[3].text = Player.GetComponent<PlayerStats>().Defense.ToString();
+        attributes[4].text = Player.GetComponent<PlayerStats>().HealthPoints.ToString() + "/" + Player.GetComponent<PlayerStats>().MaxHP.ToString();
+        attributes[5].text = Player.GetComponent<PlayerStats>().HealthRegen.ToString();
+        attributes[6].text = Player.GetComponent<PlayerStats>().MoveSpeed.ToString();
+        attributes[7].text = Math.Round((1 / Player.GetComponent<PlayerStats>().AttackSpeed), 3).ToString();
+        attributes[8].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<PlayerStats>().CurrEXP.ToString() + "/" + Player.GetComponent<PlayerStats>().ExperienceToNextLvl.ToString();
+        attributes[9].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<PlayerStats>().Dodge.ToString() + "%";
+        attributes[10].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<PlayerStats>().Armor.ToString();
+        attributes[11].GetComponent<TextMeshProUGUI>().text = Player.GetComponent<PlayerStats>().Damage.ToString();
     }
 
     public void AddNumber(TextMeshProUGUI attr)
@@ -48,16 +38,16 @@ public class StatsUI : MonoBehaviour
             switch (attributes.IndexOf(attr))
             {
                 case 0: //Vit
-                    Player.GetComponent<Moving>().VitalityUp();
+                    Player.GetComponent<PlayerStats>().VitalityUp();
                     break;
                 case 1: //Agi
-                    Player.GetComponent<Moving>().AgilityUp();
+                    Player.GetComponent<PlayerStats>().AgilityUp();
                     break;
                 case 2: //Str
-                    Player.GetComponent<Moving>().StrengthUp();
+                    Player.GetComponent<PlayerStats>().StrengthUp();
                     break;
                 case 3: //Def
-                    Player.GetComponent<Moving>().DefenseUp();
+                    Player.GetComponent<PlayerStats>().DefenseUp();
                     break;
                 default:
                     break;

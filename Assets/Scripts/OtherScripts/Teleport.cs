@@ -18,7 +18,7 @@ public class Teleport : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
-            GameObject.Find("Player").GetComponent<Moving>().SaveState();
+            GameObject.Find("Player").GetComponent<PlayerStats>().SaveState();
             GlobalControl.Instance.posX = posX;
             GlobalControl.Instance.posY = posY;
             GlobalControl.Instance.posZ = GameObject.Find("Player").transform.position.z;

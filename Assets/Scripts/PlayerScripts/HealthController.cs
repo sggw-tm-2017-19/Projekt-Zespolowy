@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class HealthController : MonoBehaviour {
     
-    private float HP {
-        get { return GetComponent<Moving>().HealthPoints; }
-        set { GetComponent<Moving>().HealthPoints = value; } }
-    private float Armor { get { return GetComponent<Moving>().Armor; } }
+    private int HP {
+        get { return GetComponent<PlayerStats>().HealthPoints; }
+        set { GetComponent<PlayerStats>().HealthPoints = value; } }
+    private int Armor { get { return GetComponent<PlayerStats>().Armor; } }
 
     public void Update()
     {
@@ -20,9 +20,9 @@ public class HealthController : MonoBehaviour {
     /// Zadaj obrażenia postaci i sprawdź czy jest martwa.
     /// </summary>
     /// <param name="damage">Liczba punktów obrażeń</param>
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        float finalDamage = damage > Armor ? damage - Armor : 0;
+        int finalDamage = damage > Armor ? damage - Armor : 0;
         HP -= finalDamage;
     }
 
@@ -31,8 +31,8 @@ public class HealthController : MonoBehaviour {
     /// </summary>
     private void KillCharacter()
     {
-        HP = GetComponent<Moving>().MaxHP;
-        GetComponent<Moving>().SaveState();
+        HP = GetComponent<PlayerStats>().MaxHP;
+        GetComponent<PlayerStats>().SaveState();
         SceneManager.LoadScene(GlobalControl.Instance.previousVisitedCity);
     }
 }

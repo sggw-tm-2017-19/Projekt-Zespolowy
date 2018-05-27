@@ -15,8 +15,8 @@ public class TestScript : MonoBehaviour
     }
     void DoTask()
     {
-        Player.GetComponent<Moving>().Gold += 500;
-        Player.GetComponent<Moving>().HealthPoints -= 100;
-        Player.GetComponent<Moving>().CurrEXP += 100;
+        Player.GetComponent<PlayerStats>().Gold += 500;
+        Player.GetComponent<PlayerStats>().HealthPoints -= 100;
+        Player.GetComponent<PlayerStats>().CurrEXP += 100;
     }
 }

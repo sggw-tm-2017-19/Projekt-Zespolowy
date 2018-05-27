@@ -8,7 +8,7 @@ public class BasicMelee : MonoBehaviour
 {
 
 
-    public float Damage;
+    public int Damage;
     public float Cooldown;
     public float Range;
 
@@ -46,7 +46,6 @@ public class BasicMelee : MonoBehaviour
         {
             Attack(other.gameObject);
             timeCounter = 0;
-
         }
     }
 

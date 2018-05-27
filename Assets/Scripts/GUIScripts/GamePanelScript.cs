@@ -13,8 +13,8 @@ public class GamePanelScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-        currHealth.fillAmount = Player.GetComponent<Moving>().HealthPoints/Player.GetComponent<Moving>().MaxHP;
-        currExp.fillAmount = Player.GetComponent<Moving>().CurrEXP / Player.GetComponent<Moving>().ExperienceToNextLvl;
+        currHealth.fillAmount = (float)Player.GetComponent<PlayerStats>().HealthPoints/Player.GetComponent<PlayerStats>().MaxHP;
+        currExp.fillAmount = (float)Player.GetComponent<PlayerStats>().CurrEXP / Player.GetComponent<PlayerStats>().ExperienceToNextLvl;
     }
     public void ExitGame()
     {
