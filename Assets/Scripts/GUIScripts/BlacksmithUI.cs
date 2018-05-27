@@ -22,7 +22,7 @@ public class BlacksmithUI : MonoBehaviour {
         levels[4] = Convert.ToInt32(Mathf.Pow(2, Player.GetComponent<PlayerStats>().RHand - 1) * 100);
         levels[5] = Convert.ToInt32(Mathf.Pow(2, Player.GetComponent<PlayerStats>().LHand - 1) * 100);
         levels[6] = Convert.ToInt32(Mathf.Pow(2, Player.GetComponent<PlayerStats>().Boots - 1) * 100);
-    }
+    }   
 
     // Update is called once per frame
     void Update()
