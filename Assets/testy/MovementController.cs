@@ -7,7 +7,7 @@ public class MovementController : MonoBehaviour {
     public float Speed;
     public Vector3 direction;
 
-    private bool canMove = true;
+    private bool canMove = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,12 +15,31 @@ public class MovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (direction.magnitude != 1) direction.Normalize();
+        direction.Normalize();
         if (canMove) transform.position += direction * Speed;
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject other = collision.gameObject;
+        if (other.name == "Player") { StopMoving();     return; }
+        if (other.name == "mapa") StartMoving();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        GameObject other = collision.gameObject;
+        if (other.name == "Player") { StartMoving(); return; }
+        if (other.name == "mapa") StopMoving();
+    }
+
+    public void StopMoving()
     {
         canMove = false;
+    }
+
+    public void StartMoving()
+    {
+        canMove = true;
     }
 }

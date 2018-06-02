@@ -29,12 +29,11 @@ public class ProjectileScript : MonoBehaviour {
         Position += (Vector3)movementDirection * speed * Time.deltaTime;
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject otherObject = collision.gameObject;
         if (otherObject.name == "Player") otherObject.SendMessage("TakeDamage", damage);
         if (otherObject.tag != "Enemy") Destroy(gameObject);
-        
     }
 
     public void setDirectionAngle(float angle)
