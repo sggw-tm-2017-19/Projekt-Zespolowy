@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,19 +7,30 @@ public class MovementController : MonoBehaviour {
 
     public float Speed;
     public Vector3 direction;
+    
 
     private bool canMove = false;
+    private GameObject player;
+    private SpriteRenderer spriteRenderer;
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        direction.Normalize();
-        if (canMove) transform.position += direction * Speed;
+        player = GameObject.FindGameObjectWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
+   
+
+    // Update is called once per frame
+    void Update () {
+        SetDirection();
+        if (canMove) transform.position += direction * Speed;
+	}
+ private void SetDirection()
+    {
+        int direction = Math.Sign(player.transform.position.x - transform.position.x);
+        spriteRenderer.flipX = direction <= 0 ? true : false;
+        this.direction = new Vector2(direction, 0);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
