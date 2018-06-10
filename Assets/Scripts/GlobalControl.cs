@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour
 {
@@ -11,11 +12,16 @@ public class GlobalControl : MonoBehaviour
     public float posX = 0, posY = 0, posZ = 0;
     public decimal moveSpeed = 4, attackSpeed = 1, dodge = 0;
     public string previousVisitedCity = "Wioska";
+    public string currMap = "";
+    public GameObject blacksmith;
+    public GameObject Player;
 
     void Awake()
     {
         if (Instance == null)
         {
+            Player = GameObject.Find("Player");
+            blacksmith = GameObject.Find("BlacksmithInventory");
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
@@ -23,5 +29,21 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Update()
+    {
+        if(currMap!=SceneManager.GetActiveScene().name)
+        {
+            Teleported();
+            currMap = SceneManager.GetActiveScene().name;
+        }
+    }
+
+    public void Teleported()
+    {
+        Player = GameObject.Find("Player");
+        blacksmith = GameObject.Find("BlacksmithInventory");
+        blacksmith.SetActive(false);
     }
 }

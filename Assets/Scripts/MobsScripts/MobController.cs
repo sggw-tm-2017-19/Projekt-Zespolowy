@@ -27,7 +27,7 @@ public class MobController : MonoBehaviour {
         HP -= damage;
         if (HP <= 0) Destroy(gameObject);
     }
-    public void Stuned(float time)
+    public void Stunned(float time)
     {
         Stun = true;
         Invoke("UnStun", time);

@@ -12,14 +12,11 @@ public class BasicRange : MonoBehaviour {
 
     private BoxCollider2D boxCollider;
     private float timeCount = 0;
-    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
         boxCollider = GetComponent<BoxCollider2D>();
         setColliderSize();
-
 	}
 	
 	// Update is called once per frame
@@ -39,7 +36,7 @@ public class BasicRange : MonoBehaviour {
 
     private void Attack(GameObject other)
     {
-        Vector2 direction = player.transform.position - ProjectileStartPoint.position;
+        Vector2 direction = GlobalControl.Instance.Player.transform.position - ProjectileStartPoint.position;
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = ProjectileStartPoint.position;
         projectile.SendMessage("setDirection", direction);

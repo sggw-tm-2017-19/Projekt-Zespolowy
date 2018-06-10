@@ -16,7 +16,6 @@ public class BasicMelee : MonoBehaviour
 
 
     private new BoxCollider2D collider;
-    private GameObject player;
     private float timeCounter;
     private Animator animator;
     private const string basicAttackTrigger = "basicAttack";
@@ -24,7 +23,6 @@ public class BasicMelee : MonoBehaviour
     private void Awake()
     {
         collider = GetComponent<BoxCollider2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
     }
 
@@ -42,7 +40,7 @@ public class BasicMelee : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject == player && timeCounter >= Cooldown)
+        if (other.gameObject == GlobalControl.Instance.Player && timeCounter >= Cooldown)
         {
             Attack(other.gameObject);
             timeCounter = 0;

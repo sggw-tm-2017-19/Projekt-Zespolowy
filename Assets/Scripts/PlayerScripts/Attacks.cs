@@ -121,7 +121,7 @@ public class Attacks : PlayerStats
             EnableCollider();
             for (int i = 0; i < enemies.Count; i++)
             {
-                enemies[i].GetComponent<MobController>().Stuned(stunTime);
+                enemies[i].GetComponent<MobController>().Stunned(stunTime);
                 enemies[i].GetComponent<MobController>().Attacked(damage);
             }
         }

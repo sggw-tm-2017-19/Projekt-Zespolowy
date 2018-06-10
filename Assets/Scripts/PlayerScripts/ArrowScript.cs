@@ -29,7 +29,6 @@ public class ArrowScript : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         AttackCollider = GetComponent<CapsuleCollider2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -53,7 +52,7 @@ public class ArrowScript : MonoBehaviour {
 
     void Damage(GameObject enemy)
     {
-        enemy.GetComponent<MobController>().Attacked(player.GetComponent<PlayerStats>().Damage);
+        enemy.GetComponent<MobController>().Attacked(GlobalControl.Instance.Player.GetComponent<PlayerStats>().Damage);
         Debug.Log(enemy.GetComponent<MobStats>().HealthPoints);
     }
 }
