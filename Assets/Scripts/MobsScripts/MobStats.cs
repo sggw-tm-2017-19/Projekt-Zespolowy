@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MobsStats : MonoBehaviour
+public class MobStats : MonoBehaviour
 {
     private decimal moveSpeed, attackSpeed;
     private int armor, damage, healthPoints, maxHP;
@@ -118,7 +118,6 @@ public class MobsStats : MonoBehaviour
                         maxHP = 1;
                         break;
                     case Bosses.Skkub:
-                        Level = 1;
                         moveSpeed = 1;
                         attackSpeed = 1;
                         armor = 1;
@@ -135,10 +134,12 @@ public class MobsStats : MonoBehaviour
                         healthPoints = 1;
                         maxHP = 1;
                         break;
-
                     default:
                         break;
                 }
+
+                break;
+
 
             case Types.Melee:
                 Level = 1;
