@@ -144,6 +144,7 @@ public class Attacks : PlayerStats
         piercingArrowStartPosition = playerSprite.transform.position;
         piercingArrowSprite.flipX = !playerSprite.flipX;
         piercingArrowStartPosition.y += 0.2f;
+        piercingArrowStartPosition.z = -0.1f;
         piercingArrowPrefab.transform.position = piercingArrowStartPosition;
         GameObject piercingArrow = Instantiate(piercingArrowPrefab);
         if (piercingArrowSprite.flipX)

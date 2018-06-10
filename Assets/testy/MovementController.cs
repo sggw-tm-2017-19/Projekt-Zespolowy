@@ -9,7 +9,7 @@ public class MovementController : MonoBehaviour {
     public Vector3 direction;
     
 
-    private bool canMove = false;
+    private bool canMove = true;
     private GameObject player;
     private SpriteRenderer spriteRenderer;
 	// Use this for initialization

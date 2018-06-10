@@ -9,13 +9,12 @@ public class BasicRange : MonoBehaviour {
     public int NumberOfProjectiles=1;
     public float Range;
     public Transform ProjectileStartPoint;
-
-    private BoxCollider2D boxCollider;
+    
+    
     private float timeCount = 0;
-
+    private BoxCollider2D boxCollider;
 	// Use this for initialization
 	void Start () {
-        boxCollider = GetComponent<BoxCollider2D>();
         setColliderSize();
 	}
 	
@@ -44,7 +43,11 @@ public class BasicRange : MonoBehaviour {
 
     void setColliderSize()
     {
-        boxCollider.size += new Vector2(Range / 2, 0);
-        boxCollider.offset -= new Vector2(Range / 2, 0);
+        BoxCollider2D mainCollider = GetComponent<BoxCollider2D>();
+        BoxCollider2D newCollider=gameObject.AddComponent<BoxCollider2D>();
+        newCollider.size = mainCollider.size + new Vector2(Range, 0);
+        newCollider.offset =  Vector2.left * newCollider.size.x / 2;
+        newCollider.isTrigger = true;
+        boxCollider = newCollider;
     }
 }

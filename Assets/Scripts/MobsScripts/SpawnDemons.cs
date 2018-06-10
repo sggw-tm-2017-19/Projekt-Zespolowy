@@ -9,10 +9,14 @@ public class SpawnDemons : MonoBehaviour {
     public Transform spawnPoint3;
     public GameObject lesserDemonPrefab;
     public float coolDown;
+    public float Range;
+
 
     private List<Transform> spawnPoints=new List<Transform>();
+    private GameObject player;
     // Use this for initialization
     void Start () {
+        player = GameObject.FindWithTag("Player");
         spawnPoints.Add(spawnPoint1);
         spawnPoints.Add(spawnPoint2);
         spawnPoints.Add(spawnPoint3);
@@ -28,8 +32,9 @@ public class SpawnDemons : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(coolDown);
-            spawnPoints.ForEach(sp => Instantiate(lesserDemonPrefab, sp.position,sp.rotation));
-
+            float distance = (player.transform.position - gameObject.transform.position).magnitude;
+            if(distance<=Range)
+                spawnPoints.ForEach(sp => Instantiate(lesserDemonPrefab, sp.position,sp.rotation));
         }
 
     }
