@@ -109,13 +109,12 @@ public class MobStats : MonoBehaviour
                 switch (Boss)
                 {
                     case Bosses.Imp:
-                        Level = 1;
                         moveSpeed = 1;
                         attackSpeed = 1;
                         armor = 1;
                         damage = 1;
-                        healthPoints = 1;
-                        maxHP = 1;
+                        healthPoints = 7;
+                        maxHP = 10;
                         break;
                     case Bosses.Skkub:
                         moveSpeed = 1;
@@ -126,7 +125,6 @@ public class MobStats : MonoBehaviour
                         maxHP = 1;
                         break;
                     case Bosses.Wizard:
-                        Level = 1;
                         moveSpeed = 1;
                         attackSpeed = 1;
                         armor = 1;
