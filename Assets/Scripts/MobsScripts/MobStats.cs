@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MobStats : MonoBehaviour
 {
-    private decimal moveSpeed, attackSpeed;
+    private decimal attackSpeed;
     private int armor, damage, healthPoints, maxHP;
 
     private enum Types { Melee, Ranged, Boss }
@@ -15,6 +15,8 @@ public class MobStats : MonoBehaviour
     private Bosses Boss;
     [SerializeField]
     private int Level;
+	[SerializeField]
+	private decimal moveSpeed;
 
     /// <summary>
     /// Zmiana statystyk po uderzeniu w moba
@@ -109,55 +111,46 @@ public class MobStats : MonoBehaviour
                 switch (Boss)
                 {
                     case Bosses.Imp:
-                        moveSpeed = 1;
-                        attackSpeed = 1;
-                        armor = 1;
-                        damage = 1;
-                        healthPoints = 7;
-                        maxHP = 10;
-                        break;
+						attackSpeed = 10;
+						armor = 8;
+						damage = Level * 2;
+						healthPoints = Level * 50;
+						maxHP = Level * 50;
+						break;
                     case Bosses.Skkub:
-                        moveSpeed = 1;
-                        attackSpeed = 1;
-                        armor = 1;
-                        damage = 1;
-                        healthPoints = 1;
-                        maxHP = 1;
-                        break;
+						attackSpeed = 8;
+						armor = 15;
+						damage = Level * 2;
+						healthPoints = Level * 50;
+						maxHP = Level * 50;
+						break;
                     case Bosses.Wizard:
-                        moveSpeed = 1;
-                        attackSpeed = 1;
-                        armor = 1;
-                        damage = 1;
-                        healthPoints = 1;
-                        maxHP = 1;
-                        break;
+						attackSpeed = 10;
+						armor = 20;
+						damage = Level * 2;
+						healthPoints = Level * 50;
+						maxHP = Level * 50;
+						break;
                     default:
                         break;
                 }
 
                 break;
-
-
             case Types.Melee:
-                Level = 1;
-                moveSpeed = 1;
-                attackSpeed = 1;
-                armor = 1;
-                damage = 1;
-                healthPoints = 1;
-                maxHP = 1;
+				attackSpeed = 5;
+				armor = 5;
+				damage = Level * 2;
+				healthPoints = Level * 20;
+				maxHP = Level * 20;
                 break;
 
             case Types.Ranged:
-                Level = 1;
-                moveSpeed = 1;
-                attackSpeed = 1;
-                armor = 1;
-                damage = 1;
-                healthPoints = 1;
-                maxHP = 1;
-                break;
+				attackSpeed = 5;
+				armor = 5;
+				damage = Level * 2;
+				healthPoints = Level * 20;
+				maxHP = Level * 20;
+				break;
 
             default:
                 break;
