@@ -103,55 +103,54 @@ public class MobsStats : MonoBehaviour
 		case Types.Boss:
 			switch (Boss) {
 			case Bosses.Imp:
-				Level = 1;
-				moveSpeed = 1;
-				attackSpeed = 1;
-				armor = 1;
-				damage = 1;
-				healthPoints = 1;
-				maxHP = 1;
+				Level = 8;
+				moveSpeed = 10;
+				attackSpeed = 10;
+				armor = 8;
+				damage = Level * 2;
+				healthPoints = Level * 50;
+				maxHP = Level * 50;
 				break;
 			case Bosses.Skkub:
-				Level = 1;
-				moveSpeed = 1;
-				attackSpeed = 1;
-				armor = 1;
-				damage = 1;
-				healthPoints = 1;
-				maxHP = 1;
+				Level = 12;
+				moveSpeed = 8;
+				attackSpeed = 8;
+				armor = 15;
+				damage = Level * 2;
+				healthPoints = Level * 50;
+				maxHP = Level * 50;
 				break;
 			case Bosses.Wizard:
-				Level = 1;
-				moveSpeed = 1;
-				attackSpeed = 1;
-				armor = 1;
-				damage = 1;
-				healthPoints = 1;
-				maxHP = 1;
-				break;
-				
+				Level = 20;
+				moveSpeed = 5;
+				attackSpeed = 10;
+				armor = 20;
+				damage = Level * 2;
+				healthPoints = Level * 50;
+				maxHP = Level * 50;
+				break;				
 			default:
 				break;
 			}
 
 		case Types.Melee:
-			Level = 1;
-			moveSpeed = 1;
-			attackSpeed = 1;
-			armor = 1;
-			damage = 1;
-			healthPoints = 1;
-			maxHP = 1;
+			Level = 5;
+			moveSpeed = 15;
+			attackSpeed = 5;
+			armor = 5;
+			damage = Level * 2;
+			healthPoints = Level * 20;
+			maxHP = Level * 20;
 			break;
 
 		case Types.Ranged:
-			Level = 1;
-			moveSpeed = 1;
-			attackSpeed = 1;
-			armor = 1;
-			damage = 1;
-			healthPoints = 1;
-			maxHP = 1;
+			Level = 4;
+			moveSpeed = 15;
+			attackSpeed = 5;
+			armor = 5;
+			damage = Level * 2;
+			healthPoints = Level * 20;
+			maxHP = Level * 20;
 			break;
 
 		default:
