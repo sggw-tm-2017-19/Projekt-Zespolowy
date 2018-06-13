@@ -20,7 +20,7 @@ public class MobsStats : MonoBehaviour
 	/// </summary>
 	public void HealthPointsDown()
 	{
-		healthPoints -= 1;
+		healthPoints -= 25;
 	}
 
 	//Getters & Setters
@@ -132,6 +132,7 @@ public class MobsStats : MonoBehaviour
 			default:
 				break;
 			}
+			break;
 
 		case Types.Melee:
 			Level = 5;
