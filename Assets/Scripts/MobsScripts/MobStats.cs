@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class MobStats : MonoBehaviour
 {
@@ -13,17 +14,29 @@ public class MobStats : MonoBehaviour
     private Types Mob;
     [SerializeField]
     private Bosses Boss;
-    [SerializeField]
-    private int Level;
+    //[SerializeField]
+    //private int Level;
+    public int Level;
 	[SerializeField]
 	private decimal moveSpeed;
 
     /// <summary>
     /// Zmiana statystyk po uderzeniu w moba
     /// </summary>
-    public void HealthPointsDown()
+    public void HealthPointsDown(int takeDamage)
     {
-        healthPoints -= 1;
+        healthPoints -= Convert.ToInt32(takeDamage/Mathf.Sqrt(Armor));
+    }
+
+    public void GetStun(float time)
+    {
+        Stun = true;
+        Invoke("UnStun", time);
+    }
+
+    public void UnStun()
+    {
+        Stun = false;
     }
 
     //Getters & Setters
@@ -111,25 +124,25 @@ public class MobStats : MonoBehaviour
                 switch (Boss)
                 {
                     case Bosses.Imp:
-						attackSpeed = 10;
-						armor = 8;
-						damage = Level * 2;
-						healthPoints = Level * 50;
-						maxHP = Level * 50;
+						AttackSpeed = 10;
+						Armor = 8;
+						Damage = Level * 2;
+						HealthPoints = Level * 50;
+						MaxHP = Level * 50;
 						break;
                     case Bosses.Skkub:
-						attackSpeed = 8;
-						armor = 15;
-						damage = Level * 2;
-						healthPoints = Level * 50;
-						maxHP = Level * 50;
+						AttackSpeed = 8;
+						Armor = 15;
+						Damage = Level * 2;
+						HealthPoints = Level * 50;
+						MaxHP = Level * 50;
 						break;
                     case Bosses.Wizard:
-						attackSpeed = 10;
-						armor = 20;
-						damage = Level * 2;
-						healthPoints = Level * 50;
-						maxHP = Level * 50;
+						AttackSpeed = 10;
+						Armor = 20;
+						Damage = Level * 2;
+						HealthPoints = Level * 50;
+						MaxHP = Level * 50;
 						break;
                     default:
                         break;
@@ -137,19 +150,19 @@ public class MobStats : MonoBehaviour
 
                 break;
             case Types.Melee:
-				attackSpeed = 5;
-				armor = 5;
-				damage = Level * 2;
-				healthPoints = Level * 20;
-				maxHP = Level * 20;
+				AttackSpeed = 5;
+				Armor = 5;
+				Damage = Level * 2;
+				HealthPoints = Level * 20;
+				MaxHP = Level * 20;
                 break;
 
             case Types.Ranged:
-				attackSpeed = 5;
-				armor = 5;
-				damage = Level * 2;
-				healthPoints = Level * 20;
-				maxHP = Level * 20;
+				AttackSpeed = 5;
+				Armor = 5;
+				Damage = Level * 2;
+				HealthPoints = Level * 20;
+				MaxHP = Level * 20;
 				break;
 
             default:

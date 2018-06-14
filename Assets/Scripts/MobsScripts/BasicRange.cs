@@ -26,7 +26,7 @@ public class BasicRange : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        if (other.name == "Player" && timeCount>=Cooldown)
+        if (other.name == "Player" && timeCount>=Cooldown && !GetComponent<MobStats>().Stun)
         {
             Attack(other);
             timeCount = 0;

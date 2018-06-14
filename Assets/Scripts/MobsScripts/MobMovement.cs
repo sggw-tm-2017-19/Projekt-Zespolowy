@@ -20,12 +20,12 @@ public class MobMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (transform.position.x - player.transform.position.x < 30) 
+		if (transform.position.x - player.transform.position.x < 30 && !GetComponent<MobStats>().Stun) 
 		{
 			StartMoving();
 		}
 
-		if (transform.position.x - player.transform.position.x < 10) 
+		if (transform.position.x - player.transform.position.x < 10 || GetComponent<MobStats>().Stun) 
 		{
 			StopMoving();
 		} 
