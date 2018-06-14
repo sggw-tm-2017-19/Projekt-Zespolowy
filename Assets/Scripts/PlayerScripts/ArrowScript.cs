@@ -5,10 +5,9 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour {
 
     private float arrowSpeed;
-    private CapsuleCollider2D AttackCollider;
 
     private List<GameObject> enemies = new List<GameObject>();
-    private GameObject player;
+    private PlayerStats playerStats;
 
     Rigidbody2D rb;
 
@@ -27,32 +26,40 @@ public class ArrowScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
-        AttackCollider = GetComponent<CapsuleCollider2D>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         rb.velocity = new Vector2(ArrowSpeed, 0);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 0.5f);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 11)
+        if (other.gameObject.tag == "Enemy")
             if (!enemies.Contains(other.gameObject))
             {
                 enemies.Add(other.gameObject);
-                Damage(other.gameObject);
+                DealDamage(other.gameObject);
             }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 11) enemies.Remove(other.gameObject);
+        if (other.gameObject.tag == "Enemy") enemies.Remove(other.gameObject);
     }
 
-    void Damage(GameObject enemy)
+    void DealDamage(GameObject enemy)
     {
-        enemy.GetComponent<MobController>().Attacked(GlobalControl.Instance.Player.GetComponent<PlayerStats>().Damage);
-        Debug.Log(enemy.GetComponent<MobStats>().HealthPoints);
+        int damage = playerStats.Damage /2;
+        enemy.GetComponent<MobStats>().HealthPointsDown(damage);
+        if (enemy.GetComponent<MobStats>().HealthPoints <= 0)
+        {
+            Destroy(enemy.gameObject);
+            enemies.Remove(enemy);
+            Attacks.Instance.RemoveFromEnemies(enemy);
+            playerStats.CurrEXP += 100;
+            playerStats.Gold += 500;
+        }
     }
 }
