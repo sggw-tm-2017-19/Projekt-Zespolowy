@@ -14,9 +14,8 @@ public class MobStats : MonoBehaviour
     private Types Mob;
     [SerializeField]
     private Bosses Boss;
-    //[SerializeField]
-    //private int Level;
-    public int Level;
+    [SerializeField]
+    private int level;
 	[SerializeField]
 	private decimal moveSpeed;
 
@@ -49,6 +48,18 @@ public class MobStats : MonoBehaviour
         set
         {
             moveSpeed = value;
+        }
+    }
+
+    public int Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
         }
     }
 
@@ -160,9 +171,9 @@ public class MobStats : MonoBehaviour
             case Types.Ranged:
 				AttackSpeed = 5;
 				Armor = 5;
-				Damage = Level * 2;
+				Damage = Convert.ToInt16(Level * 2.2);
 				HealthPoints = Level * 20;
-				MaxHP = Level * 20;
+				MaxHP = Level * 15;
 				break;
 
             default:

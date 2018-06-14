@@ -13,7 +13,7 @@ public class MobMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
+        player = GlobalControl.Instance.Player;
 		if (isMoving) transform.position += direction * speed;
 	}
 	
