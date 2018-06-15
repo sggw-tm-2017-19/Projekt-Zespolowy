@@ -38,7 +38,7 @@ public class BasicMelee : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.name == GlobalControl.Instance.Player.name && timeCounter >= Cooldown)
+        if (other.gameObject.name == GlobalControl.Instance.Player.name && timeCounter >= Cooldown && !GetComponent<MobStats>().Stun)
         {
             Attack(other.gameObject);
             timeCounter = 0;

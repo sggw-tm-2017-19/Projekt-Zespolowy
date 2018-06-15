@@ -142,7 +142,7 @@ public class PlayerStats : MonoBehaviour {
         statPoints -= 1;
         agility += 1;
         moveSpeed += decimal.Parse("0.1");
-        attackSpeed -= decimal.Parse("0.05");
+        attackSpeed += decimal.Parse("0.05");
     }
 
     /// <summary>
@@ -224,7 +224,7 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2, lHand - 1) * 100);
         LHand++;
-        attackSpeed -= decimal.Parse("0.05");
+        attackSpeed += decimal.Parse("0.05");
     }
 
     /// <summary>

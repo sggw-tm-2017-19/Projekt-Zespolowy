@@ -19,7 +19,7 @@ public class StatsUI : MonoBehaviour
         attributes[4].text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().HealthPoints.ToString() + "/" + GlobalControl.Instance.Player.GetComponent<PlayerStats>().MaxHP.ToString();
         attributes[5].text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().HealthRegen.ToString();
         attributes[6].text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().MoveSpeed.ToString();
-        attributes[7].text = Math.Round((1 / GlobalControl.Instance.Player.GetComponent<PlayerStats>().AttackSpeed), 3).ToString();
+        attributes[7].text = (GlobalControl.Instance.Player.GetComponent<PlayerStats>().AttackSpeed).ToString();
         attributes[8].GetComponent<TextMeshProUGUI>().text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().CurrEXP.ToString() + "/" + GlobalControl.Instance.Player.GetComponent<PlayerStats>().ExperienceToNextLvl.ToString();
         attributes[9].GetComponent<TextMeshProUGUI>().text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().Dodge.ToString() + "%";
         attributes[10].GetComponent<TextMeshProUGUI>().text = GlobalControl.Instance.Player.GetComponent<PlayerStats>().Armor.ToString();

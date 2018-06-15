@@ -13,8 +13,8 @@ TextureImporter:
     21300016: explosion1
     21300018: explosion2
     21300020: explosion3
-    21300022: bossskills_0
-    21300024: bossskills_1
+    21300022: DashFire1
+    21300024: DashFire2
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -104,12 +104,12 @@ TextureImporter:
         height: 343
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 22, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ba05c50969595241a89b349bb65dbe3
+      spriteID: bcdb161b0087e584c99d5526ef6dd04c
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 140b61993fb3c7244a061be447b00f3c
+      spriteID: d240f41466c52264aa8003766016b7a1
       vertices: []
       indices: 
       edges: []
@@ -138,18 +138,18 @@ TextureImporter:
       name: tornado1
       rect:
         serializedVersion: 2
-        x: 2082
-        y: 4535
-        width: 516
-        height: 802
-      alignment: 9
-      pivot: {x: 0.49999955, y: 0.53397673}
+        x: 1900
+        y: 2090
+        width: 550
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 970252260af213c4fae27e6dd9b81048
+      spriteID: 9248419097ca467429def716c6da0a57
       vertices: []
       indices: 
       edges: []
@@ -169,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7925a9c2193bca44fbdd435e1da6f953
+      spriteID: 1f8ae58551703f843883323aba77e38c
       vertices: []
       indices: 
       edges: []
@@ -189,7 +189,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b1286e3a393b1c43afce8c2a54343cc
+      spriteID: 4dbc3cec5422bd34fb9209a3c9ed5009
       vertices: []
       indices: 
       edges: []
@@ -209,7 +209,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 632f71122fdd73749be6082cff6eb93c
+      spriteID: c5ec112336f638f4a99b3d65cc526364
       vertices: []
       indices: 
       edges: []
@@ -229,7 +229,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9216373dd70059c478d01fb2adab8804
+      spriteID: 8086886d617bfaa4090e6a8859ee126b
       vertices: []
       indices: 
       edges: []
@@ -249,7 +249,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d98068887edf22e408421e32e5fa3b64
+      spriteID: 8736803667cca024ba8d56fdec3d6398
       vertices: []
       indices: 
       edges: []
@@ -269,7 +269,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ffba5edcc6a84f4881aece8a914f9c4
+      spriteID: 72f4e996cc88c974db7a8085519cc761
       vertices: []
       indices: 
       edges: []
@@ -289,7 +289,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9580ef52c70c9645b112fc7867877ab
+      spriteID: 6e6684a559fd644469b50c9523ece7f7
       vertices: []
       indices: 
       edges: []
@@ -309,27 +309,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4886f69eeb3935e40a8fc076b7ca6ac4
+      spriteID: 9d5890748da7f7f4fa2069eba62cacf5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bossskills_0
+      name: DashFire1
       rect:
         serializedVersion: 2
-        x: 3057
-        y: 4468
-        width: 177
-        height: 133
+        x: 3
+        y: 2803
+        width: 950
+        height: 88
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 929d0c04708ce534cbb7c3b603bb9360
+      spriteID: d5042907fb67aa240889244ad56a079c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DashFire2
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 2803
+        width: 950
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37dd7360b830954baf87ed9d63bb489
       vertices: []
       indices: 
       edges: []
@@ -337,7 +357,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b479902e14905d04192ee50b8d6e957e
+    spriteID: f9f2060a2bdd21d4cae96223a1c5596f
     vertices: []
     indices: 
     edges: []

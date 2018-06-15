@@ -13,19 +13,19 @@ public class MobMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
 		if (isMoving) transform.position += direction * speed;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (transform.position.x - player.transform.position.x < 30) 
+        player = GlobalControl.Instance.Player;
+		if (transform.position.x - player.transform.position.x < 30 && !GetComponent<MobStats>().Stun) 
 		{
 			StartMoving();
 		}
 
-		if (transform.position.x - player.transform.position.x < 10) 
+		if (transform.position.x - player.transform.position.x < 10 || GetComponent<MobStats>().Stun) 
 		{
 			StopMoving();
 		} 
