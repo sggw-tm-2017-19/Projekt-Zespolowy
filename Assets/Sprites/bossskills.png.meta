@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: a4a78da8db8a7b6498ef02a680296568
-timeCreated: 1528933403
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: fireball1
@@ -15,8 +13,10 @@ TextureImporter:
     21300016: explosion1
     21300018: explosion2
     21300020: explosion3
+    21300022: bossskills_0
+    21300024: bossskills_1
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 5
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -56,18 +56,21 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -76,7 +79,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -85,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -92,158 +98,250 @@ TextureImporter:
       name: fireball1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2540
-        width: 950
-        height: 350
+        x: 168
+        y: 4964
+        width: 945
+        height: 343
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 22, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2ba05c50969595241a89b349bb65dbe3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: fireball2
       rect:
         serializedVersion: 2
-        x: 950
-        y: 2540
-        width: 950
-        height: 350
+        x: 1117
+        y: 4977
+        width: 942
+        height: 337
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 140b61993fb3c7244a061be447b00f3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tornado1
       rect:
         serializedVersion: 2
-        x: 1900
-        y: 2090
-        width: 550
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2082
+        y: 4535
+        width: 516
+        height: 802
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.53397673}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 970252260af213c4fae27e6dd9b81048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tornado2
       rect:
         serializedVersion: 2
-        x: 2450
-        y: 2090
-        width: 550
+        x: 2618
+        y: 4530
+        width: 512
         height: 800
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 7925a9c2193bca44fbdd435e1da6f953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: meteorite1
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 1840
-        width: 700
-        height: 1050
+        x: 3752
+        y: 4622
+        width: 1036
+        height: 676
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4b1286e3a393b1c43afce8c2a54343cc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: meteorite2
       rect:
         serializedVersion: 2
-        x: 3700
-        y: 1840
-        width: 700
-        height: 1050
+        x: 600
+        y: 3829
+        width: 981
+        height: 684
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 632f71122fdd73749be6082cff6eb93c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tsunade
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1340
+        x: 235
+        y: 988
         width: 1900
         height: 1200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 9216373dd70059c478d01fb2adab8804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tander tydydydydy
       rect:
         serializedVersion: 2
-        x: 2650
-        y: 1420
-        width: 1886
-        height: 420
+        x: 2727
+        y: 4012
+        width: 1984
+        height: 441
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: d98068887edf22e408421e32e5fa3b64
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: explosion1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1500
-        height: 1340
+        x: 3166
+        y: 2511
+        width: 1494
+        height: 1386
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 3ffba5edcc6a84f4881aece8a914f9c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: explosion2
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 1500
-        height: 1340
+        x: 1689
+        y: 2430
+        width: 1462
+        height: 1364
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: d9580ef52c70c9645b112fc7867877ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: explosion3
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 78
+        x: 105
+        y: 2444
         width: 1500
         height: 1340
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4886f69eeb3935e40a8fc076b7ca6ac4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossskills_0
+      rect:
+        serializedVersion: 2
+        x: 3057
+        y: 4468
+        width: 177
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929d0c04708ce534cbb7c3b603bb9360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: b479902e14905d04192ee50b8d6e957e
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
