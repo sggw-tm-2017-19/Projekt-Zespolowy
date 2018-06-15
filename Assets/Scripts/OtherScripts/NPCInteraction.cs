@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NPCInteraction : MonoBehaviour {
-
-    GameObject Player;
-    GameObject Blacksmith;
+    
     public Text dialogueText;
     public GameObject dialogueManager;
     int straznikl;//straznik wioska ludzi dialog
@@ -18,8 +16,6 @@ public class NPCInteraction : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Player = GameObject.Find("Player");
-        Blacksmith = GameObject.Find("BlacksmithInventory");
         straznikl = 0;
         straznike = 0;
         krolowa = 0;
@@ -28,7 +24,7 @@ public class NPCInteraction : MonoBehaviour {
 
     public void Test()
     {
-        Player.GetComponent<Actions>().CanWalk = false;
+        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = false;
         dialogueManager.SetActive(true);
 
         switch (name)
@@ -37,11 +33,11 @@ public class NPCInteraction : MonoBehaviour {
                 switch (straznikl)
                 {
                     case 0://przed pierwszym bossem
-                        dialogueText.text = "Not now " + Player.name.ToString() + ", we need to fight off the demons first!";
+                        dialogueText.text = "Not now " + GlobalControl.Instance.Player.name.ToString() + ", we need to fight off the demons first!";
                         straznikl = -2;
                         break;
                     case 10://po pierwszym bossie
-                        dialogueText.text = "Ah, " + Player.name.ToString() + ", do you need something?";
+                        dialogueText.text = "Ah, " + GlobalControl.Instance.Player.name.ToString() + ", do you need something?";
                         break;
                     case 11:
                         dialogueText.text = "I am sorry about your brother. I hope you can find and rescue him from the demons.";
@@ -58,18 +54,18 @@ public class NPCInteraction : MonoBehaviour {
                         dialogueText.text = "You have saved not only your brother, but also us all.";
                         break;
                     case 21:
-                        dialogueText.text = "Thank you for this, " + Player.name.ToString() + ".";
+                        dialogueText.text = "Thank you for this, " + GlobalControl.Instance.Player.name.ToString() + ".";
                         break;
                     case 22:
-                        dialogueText.text = "I'll see you later, " + Player.name.ToString() + ".";
+                        dialogueText.text = "I'll see you later, " + GlobalControl.Instance.Player.name.ToString() + ".";
                         straznikl = 23;
                         break;
                     case 25:
-                        dialogueText.text = "Do you need something, " + Player.name.ToString() + "?";
+                        dialogueText.text = "Do you need something, " + GlobalControl.Instance.Player.name.ToString() + "?";
                         straznikl = 23;
                         break;
                     default:
-                        Player.GetComponent<Actions>().CanWalk = true;
+                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
@@ -101,7 +97,7 @@ public class NPCInteraction : MonoBehaviour {
                         straznike = 18;
                         break;
                     default:
-                        Player.GetComponent<Actions>().CanWalk = true;
+                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
@@ -162,7 +158,7 @@ public class NPCInteraction : MonoBehaviour {
                         krolowa = 24;
                         break;
                     default:
-                        Player.GetComponent<Actions>().CanWalk = true;
+                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
@@ -172,7 +168,7 @@ public class NPCInteraction : MonoBehaviour {
                 switch (starszy)
                 {
                     case 0://pierwszy dialog
-                        dialogueText.text = "Ah, it's you " + Player.name.ToString() + "! We need your help, the village is being attacked by demons!";
+                        dialogueText.text = "Ah, it's you " + GlobalControl.Instance.Player.name.ToString() + "! We need your help, the village is being attacked by demons!";
                         break;
                     case 1:
                         dialogueText.text = "The guards said they have captured your brother!";
@@ -189,7 +185,7 @@ public class NPCInteraction : MonoBehaviour {
                         dialogueText.text = "You managed to drive the demons back? I am so glad.";
                         break;
                     case 11:
-                        dialogueText.text = "They kidnapped your brother?! I am so sorry" + Player.name.ToString()+".";
+                        dialogueText.text = "They kidnapped your brother?! I am so sorry" + GlobalControl.Instance.Player.name.ToString()+".";
                         break;
                     case 12:
                         dialogueText.text = "You are going after them to rescue your brother?!";
@@ -202,25 +198,25 @@ public class NPCInteraction : MonoBehaviour {
                         starszy = 15;
                         break;
                     case 17:
-                        dialogueText.text = "Good luck, " + Player.name.ToString() + ".";
+                        dialogueText.text = "Good luck, " + GlobalControl.Instance.Player.name.ToString() + ".";
                         starszy = 15;
                         break;
                     case 20://po pokonaniu ostatniego bossa
                         dialogueText.text = "You saved your brother and us all...";
                         break;
                     case 21:
-                        dialogueText.text = "We are all grateful and proud of you," + Player.name.ToString()+".";
+                        dialogueText.text = "We are all grateful and proud of you," + GlobalControl.Instance.Player.name.ToString()+".";
                         break;
                     case 22:
                         dialogueText.text = "Thank you in the name of the whole village, you honour us all.";
                         starszy = 23;
                         break;
                     case 25:
-                        dialogueText.text = "Thank you again, " + Player.name.ToString() + ".";
+                        dialogueText.text = "Thank you again, " + GlobalControl.Instance.Player.name.ToString() + ".";
                         starszy = 23;
                         break;
                     default:
-                        Player.GetComponent<Actions>().CanWalk = true;
+                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
@@ -233,14 +229,14 @@ public class NPCInteraction : MonoBehaviour {
                         dialogueText.text = "Odczep się, nie chce z Tobą gadać";
                         break;
                     default:
-                        Player.GetComponent<Actions>().CanWalk = true;
+                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
                 randomnpc++;
                 break;
             case "Kowal":
-                Blacksmith.SetActive(true);
+                GlobalControl.Instance.blacksmith.SetActive(true);
                 dialogueManager.SetActive(false);
                 break;
             default:

@@ -119,8 +119,7 @@ public class PlayerStats : MonoBehaviour {
         statPoints += 1;
         damage += 5;
         armor += 1;
-        experienceToNextLvl *= Convert.ToInt32(3 / 2);
-        experienceToNextLvl = Mathf.CeilToInt(experienceToNextLvl);
+        experienceToNextLvl = Convert.ToInt32(experienceToNextLvl * 3 / 2.0);
     }
 
     /// <summary>
@@ -143,7 +142,7 @@ public class PlayerStats : MonoBehaviour {
         statPoints -= 1;
         agility += 1;
         moveSpeed += decimal.Parse("0.1");
-        attackSpeed -= decimal.Parse("0.05");
+        attackSpeed += decimal.Parse("0.05");
     }
 
     /// <summary>
@@ -170,30 +169,30 @@ public class PlayerStats : MonoBehaviour {
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu Helmet
     /// </summary>
-    public void HelmetUp(int cost)
+    public void HelmetUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2,helmet-1)*100);
         helmet++;
-        gold -= cost;
         healthRegen += 1;
     }
 
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu Breastplate
     /// </summary>
-    public void BreastplateUp(int cost)
+    public void BreastplateUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, breastplate - 1) * 100);
         breastplate++;
-        gold -= cost;
         armor += 5;
     }
 
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu Pauldrons
     /// </summary>
-    public void PauldronsUp(int cost)
+    public void PauldronsUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, pauldrons - 1) * 100);
         pauldrons++;
-        gold -= cost;
         maxHP += 50;
         healthPoints += 50;
     }
@@ -201,40 +200,40 @@ public class PlayerStats : MonoBehaviour {
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu Belt
     /// </summary>
-    public void BeltUp(int cost)
+    public void BeltUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, belt - 1) * 100);
         belt++;
-        gold -= cost;
         dodge += decimal.Parse("0.2");
     }
 
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu RHand
     /// </summary>
-    public void RHandUp(int cost)
+    public void RHandUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, rHand - 1) * 100);
         rHand++;
-        gold -= cost;
         damage += 10;
     }
 
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu LHand
     /// </summary>
-    public void LHandUp(int cost)
+    public void LHandUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, lHand - 1) * 100);
         LHand++;
-        gold -= cost;
-        attackSpeed -= decimal.Parse("0.05");
+        attackSpeed += decimal.Parse("0.05");
     }
 
     /// <summary>
     /// Zmiana statystyk po zwiększeniu poziomu Boots
     /// </summary>
-    public void BootsUp(int cost)
+    public void BootsUp()
     {
+        gold -= Convert.ToInt32(Math.Pow(2, boots - 1) * 100);
         boots++;
-        gold -= cost;
         moveSpeed += decimal.Parse("0.1");
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
 
-    private enum Scenes { Test1, Wioska }
+    private enum Scenes { Wioska, Mapa1, Mapa2, Mapa1_1, Mapa2_1, Elfy }
     [SerializeField]
     private Scenes destination;
     [SerializeField]
@@ -18,10 +18,10 @@ public class Teleport : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
-            GameObject.Find("Player").GetComponent<PlayerStats>().SaveState();
+            GlobalControl.Instance.Player.GetComponent<PlayerStats>().SaveState();
             GlobalControl.Instance.posX = posX;
             GlobalControl.Instance.posY = posY;
-            GlobalControl.Instance.posZ = GameObject.Find("Player").transform.position.z;
+            GlobalControl.Instance.posZ = GlobalControl.Instance.Player.transform.position.z;
             SceneManager.LoadScene(destination.ToString());
         }
     }

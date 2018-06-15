@@ -9,17 +9,13 @@ public class BasicRange : MonoBehaviour {
     public int NumberOfProjectiles=1;
     public float Range;
     public Transform ProjectileStartPoint;
-
-    private BoxCollider2D boxCollider;
+    
+    
     private float timeCount = 0;
-    private GameObject player;
-
+    private BoxCollider2D boxCollider;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        boxCollider = GetComponent<BoxCollider2D>();
         setColliderSize();
-
 	}
 	
 	// Update is called once per frame
@@ -30,7 +26,7 @@ public class BasicRange : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        if (other.name == "Player" && timeCount>=Cooldown)
+        if (other.name == "Player" && timeCount>=Cooldown && !GetComponent<MobStats>().Stun)
         {
             Attack(other);
             timeCount = 0;
@@ -39,7 +35,7 @@ public class BasicRange : MonoBehaviour {
 
     private void Attack(GameObject other)
     {
-        Vector2 direction = player.transform.position - ProjectileStartPoint.position;
+        Vector2 direction = GlobalControl.Instance.Player.transform.position - ProjectileStartPoint.position;
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = ProjectileStartPoint.position;
         projectile.SendMessage("setDirection", direction);
@@ -47,7 +43,11 @@ public class BasicRange : MonoBehaviour {
 
     void setColliderSize()
     {
-        boxCollider.size += new Vector2(Range / 2, 0);
-        boxCollider.offset -= new Vector2(Range / 2, 0);
+        BoxCollider2D mainCollider = GetComponent<BoxCollider2D>();
+        BoxCollider2D newCollider=gameObject.AddComponent<BoxCollider2D>();
+        newCollider.size = mainCollider.size + new Vector2(Range, 0);
+        newCollider.offset =  Vector2.left * newCollider.size.x / 2;
+        newCollider.isTrigger = true;
+        boxCollider = newCollider;
     }
 }
