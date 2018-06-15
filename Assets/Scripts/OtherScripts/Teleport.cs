@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
 
-    private enum Scenes { Wioska, Mapa1, Mapa2 }
+    private enum Scenes { Wioska, Mapa1, Mapa2, Mapa1_1, Mapa2_1, Elfy }
     [SerializeField]
     private Scenes destination;
     [SerializeField]

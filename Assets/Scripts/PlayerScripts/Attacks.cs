@@ -197,18 +197,18 @@ public class Attacks : PlayerStats
     private void CreateArrow()
     {
         piercingArrowStartPosition = playerSprite.transform.position;
-        piercingArrowSprite.flipX = !playerSprite.flipX;
+        piercingArrowSprite.flipX = playerSprite.flipX;
         piercingArrowStartPosition.y += 0.2f;
         piercingArrowStartPosition.z = -0.1f;
         piercingArrowPrefab.transform.position = piercingArrowStartPosition;
         GameObject piercingArrow = Instantiate(piercingArrowPrefab);
         if (piercingArrowSprite.flipX)
         {
-            piercingArrow.GetComponent<ArrowScript>().ArrowSpeed = 20f;
+            piercingArrow.GetComponent<ArrowScript>().ArrowSpeed = -20f;
         }
         else
         {
-            piercingArrow.GetComponent<ArrowScript>().ArrowSpeed = -20f;
+            piercingArrow.GetComponent<ArrowScript>().ArrowSpeed = 20f;
         }
     }
 

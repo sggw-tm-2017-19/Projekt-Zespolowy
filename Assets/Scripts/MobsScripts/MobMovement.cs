@@ -13,13 +13,13 @@ public class MobMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        player = GlobalControl.Instance.Player;
 		if (isMoving) transform.position += direction * speed;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        player = GlobalControl.Instance.Player;
 		if (transform.position.x - player.transform.position.x < 30 && !GetComponent<MobStats>().Stun) 
 		{
 			StartMoving();
