@@ -18,42 +18,36 @@ public class BasicMelee : MonoBehaviour
     private float timeCounter;
     private Animator animator;
     private BoxCollider2D boxCollider;
+    private GameObject player;
+    private MobStats mobStats;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        player = GameObject.Find("Player");
+        mobStats = GetComponent<MobStats>();
     }
 
     // Use this for initialization
     void Start()
     {
         timeCounter = Cooldown;
-        setColliderSize();
     }
 
     private void Update()
     {
+        float distance = Vector2.Distance(player.transform.position, transform.position);
+        if (distance <= Range && timeCounter>=Cooldown && !mobStats.Stun)
+        {
+            Attack(player);
+            timeCounter = 0;
+        }
         timeCounter += Time.deltaTime;
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.name == GlobalControl.Instance.Player.name && timeCounter >= Cooldown && !GetComponent<MobStats>().Stun)
-        {
-            Attack(other.gameObject);
-            timeCounter = 0;
-        }
-    }
+   
 
-    void setColliderSize()
-    {
-        BoxCollider2D mainCollider = GetComponent<BoxCollider2D>();
-        BoxCollider2D newCollider = gameObject.AddComponent<BoxCollider2D>();
-        newCollider.size = mainCollider.size + new Vector2(Range, 0);
-        newCollider.offset = Vector2.left * newCollider.size.x / 2;
-        newCollider.isTrigger = true;
-        boxCollider = newCollider;
-    }
+ 
 
     private void Attack(GameObject gameObject)
     {

@@ -40,7 +40,8 @@ public class ProjectileScript : MonoBehaviour {
             otherObject.SendMessage("TakeDamage", damage);
             playerHit = true;
         }
-        if (otherObject.tag != "Enemy" && destroyOnObstacles) Destroy(gameObject);
+        if (otherObject.tag != "Enemy" && destroyOnObstacles) 
+            Destroy(gameObject);
     }
 
     public void setDirectionAngle(float angle)
@@ -67,7 +68,16 @@ public class ProjectileScript : MonoBehaviour {
                 break;
             case RotationMode.FlipOnly:
                 float newRotation = transform.rotation.eulerAngles.z * Mathf.Rad2Deg + angle;
-                GetComponent<SpriteRenderer>().flipX = newRotation > 90 && newRotation <= 270;
+                if(newRotation>90 && newRotation <= 270)
+                {
+                    transform.rotation = Quaternion.Euler(Vector3.forward * 180);
+                    GetComponent<SpriteRenderer>().flipY = true;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(Vector3.zero);
+                    GetComponent<SpriteRenderer>().flipY = false;
+                }
                 break;
             case RotationMode.None:
                 break;
