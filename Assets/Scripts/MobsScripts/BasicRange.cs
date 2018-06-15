@@ -13,16 +13,18 @@ public class BasicRange : MonoBehaviour {
     public float minRange;
     public Transform ProjectileStartPoint;
     public Vector2 direction;
+    public string trigger;
     
     
     private float timeCount = 0;
     private GameObject player;
     private MobStats mobStats;
+    private Animator animator;
 	// Use this for initialization
 	void Start () {
         player = GameObject.Find("Player");
         mobStats = GetComponent<MobStats>();
-
+        animator = GetComponent<Animator>();
 
 	}
 	
@@ -42,6 +44,7 @@ public class BasicRange : MonoBehaviour {
     {
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = ProjectileStartPoint.position;
+
         if (trajectory == ProjectileTrajectory.ConstantDirection)
             projectile.SendMessage("setDirection", this.direction);
         else
@@ -49,7 +52,7 @@ public class BasicRange : MonoBehaviour {
             Vector2 direction = player.transform.position - ProjectileStartPoint.position;
             projectile.SendMessage("setDirection",direction );
           }
-        
+        animator.SetTrigger(trigger);
     }
     
 }
