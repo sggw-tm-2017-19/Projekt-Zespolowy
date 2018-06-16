@@ -37,7 +37,7 @@ public class DashFireScript : MonoBehaviour {
     IEnumerator DealDamage(List<GameObject> enemies)
     {
         yield return new WaitForSeconds(0.9f);
-        int damage = playerStats.Damage / 10;
+        int damage = playerStats.Damage / 5;
         if (enemies.Count > 0)
         {
             for (int i = 0; i < enemies.Count; i++)
@@ -45,10 +45,7 @@ public class DashFireScript : MonoBehaviour {
                 enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
                 if (enemies[i].GetComponent<MobStats>().HealthPoints <= 0)
                 {
-                    Destroy(enemies[i].gameObject);
                     Enemies.Remove(enemies[i]);
-                    playerStats.CurrEXP += 100;
-                    playerStats.Gold += 500;
                 }
             }
         }

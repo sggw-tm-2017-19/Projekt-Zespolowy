@@ -206,7 +206,7 @@ public class MobStats : MonoBehaviour
 				AttackSpeed = 5;
 				Armor = 5;
 				Damage = Convert.ToInt16(Level * 2.2);
-				HealthPoints = Level * 20;
+				HealthPoints = Level * 15;
 				MaxHP = Level * 15;
 				break;
 

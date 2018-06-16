@@ -29,15 +29,72 @@ public class Attacks : PlayerStats
 
     private decimal basicAttackCounter = 0;
     private int basicAttackHash = Animator.StringToHash("New Layer.MainCharacter_BasicAttack");
+    public decimal BasicAttackCounter
+    {
+        get
+        {
+            return basicAttackCounter;
+        }
+        set
+        {
+            basicAttackCounter = value;
+        }
+    }
 
     private decimal waveSwordCounter = 0;
     private int waveSwordHash = Animator.StringToHash("New Layer.MainCharacter_WaveSword");
+    public decimal WaveSwordCounter
+    {
+        get
+        {
+            return waveSwordCounter;
+        }
+        set
+        {
+            waveSwordCounter = value;
+        }
+    }
 
     private decimal piercingArrowCounter = 0;
     private int piercingArrowHash = Animator.StringToHash("New Layer.MainCharacter_PiercingArrow");
+    public decimal PiercingArrowCounter
+    {
+        get
+        {
+            return piercingArrowCounter;
+        }
+        set
+        {
+            piercingArrowCounter = value;
+        }
+    }
 
     private decimal dashCounter = 0;
     private int dashHash = Animator.StringToHash("New Layer.MainCharacter_Dash");
+    public decimal DashCounter
+    {
+        get
+        {
+            return dashCounter;
+        }
+        set
+        {
+            dashCounter = value;
+        }
+    }
+
+    private decimal healCounter = 0;
+    public decimal HealCounter
+    {
+        get
+        {
+            return healCounter;
+        }
+        set
+        {
+            healCounter = value;
+        }
+    }
 
     private void Awake()
     {
@@ -55,62 +112,69 @@ public class Attacks : PlayerStats
         waveSwordCounter -= Convert.ToDecimal(Time.deltaTime);
         piercingArrowCounter -= Convert.ToDecimal(Time.deltaTime);
         dashCounter -= Convert.ToDecimal(Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Z))
-            BasicAttack();
-
-        if (Input.GetKeyDown(KeyCode.X))
-            WaveSword();
-
-        if (Input.GetKeyDown(KeyCode.C))
-            PiercingArrow();
-
-        if (Input.GetKeyDown(KeyCode.V))
-            Dash();
-
-        if (basicAttackHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+        healCounter -= Convert.ToDecimal(Time.deltaTime);
+        if (GetComponent<Actions>().CanWalk)
         {
-            EnableCollider();
-            playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
-            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
-                Invoke("InvokeBasicAttack", animator.GetCurrentAnimatorStateInfo(0).length / 2);
-        }
+            if (Input.GetKeyDown(KeyCode.Z))
+                BasicAttack();
 
-        if (waveSwordHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
-        {
-            EnableCollider();
-            playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
-            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
-                Invoke("InvokeWaveSword", animator.GetCurrentAnimatorStateInfo(0).length / 2);
-        }
+            if (Input.GetKeyDown(KeyCode.X))
+                WaveSword();
 
-        if (basicAttackHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash &&
-            waveSwordHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
-            DisableCollider();
+            if (Input.GetKeyDown(KeyCode.C))
+                PiercingArrow();
 
-        if (piercingArrowHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
-        {
-            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
-                Invoke("CreateArrow", animator.GetCurrentAnimatorStateInfo(0).length / 2);
-        }
+            if (Input.GetKeyDown(KeyCode.V))
+                Dash();
 
-        if (dashHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
-        {
-            animator.speed = (float)(5m);
-            MoveDash();
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+            if (Input.GetKeyDown(KeyCode.B))
+                Heal();
+
+            if (basicAttackHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             {
-                dashFirePosition = new Vector3(playerSprite.transform.position.x, playerSprite.transform.position.y - 2.2f);
-                Invoke("InvokeCreateFire", animator.GetCurrentAnimatorStateInfo(0).length/5);
+                EnableCollider();
+                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+                animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                    Invoke("InvokeBasicAttack", animator.GetCurrentAnimatorStateInfo(0).length / 2);
             }
+
+            if (waveSwordHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+            {
+                EnableCollider();
+                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+                animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                    Invoke("InvokeWaveSword", animator.GetCurrentAnimatorStateInfo(0).length / 2);
+            }
+
+            if (basicAttackHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash &&
+                waveSwordHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+                DisableCollider();
+
+            if (piercingArrowHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+            {
+                animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                    Invoke("CreateArrow", animator.GetCurrentAnimatorStateInfo(0).length / 2);
+            }
+
+            if (dashHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+            {
+                animator.speed = (float)(5m);
+                MoveDash();
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                {
+                    dashFirePosition = new Vector3(playerSprite.transform.position.x, playerSprite.transform.position.y - 2.2f);
+                    Invoke("InvokeCreateFire", animator.GetCurrentAnimatorStateInfo(0).length / 5);
+                }
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != basicAttackHash &&
+                animator.GetCurrentAnimatorStateInfo(0).fullPathHash != waveSwordHash &&
+                animator.GetCurrentAnimatorStateInfo(0).fullPathHash != piercingArrowHash &&
+                animator.GetCurrentAnimatorStateInfo(0).fullPathHash != dashHash)
+                animator.speed = 1;
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != basicAttackHash &&
-            animator.GetCurrentAnimatorStateInfo(0).fullPathHash != waveSwordHash &&
-            animator.GetCurrentAnimatorStateInfo(0).fullPathHash != piercingArrowHash &&
-            animator.GetCurrentAnimatorStateInfo(0).fullPathHash != dashHash)
-            animator.speed = 1;
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -248,5 +312,16 @@ public class Attacks : PlayerStats
         dashFire.transform.position = new Vector3((dashFirePosition.x + playerSprite.transform.position.x) / 2, dashFirePosition.y);
         dashFireWidth = dashFirePosition.x - playerSprite.transform.position.x;
         dashFire.transform.localScale = new Vector3(dashFireWidth/12, dashFire.transform.localScale.y, 0);
+    }
+    private void Heal()
+    {
+        int healthUp = playerStats.MaxHP / 5;
+        decimal cooldown = 30 - playerStats.AttackSpeed;
+        if (cooldown < 5) cooldown = 5;
+        if (healCounter <= 0)
+        {
+            healCounter = cooldown;
+            playerStats.HealthPoints += healthUp;
+        }
     }
 }

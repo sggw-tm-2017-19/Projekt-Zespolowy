@@ -13,7 +13,10 @@ public class HealthController : MonoBehaviour {
 
     public void Update()
     {
-        if (HP <= 0) KillCharacter();
+        if (HP <= 0)
+        {
+            KillCharacter();
+        }
     }
 
     /// <summary>
@@ -31,6 +34,12 @@ public class HealthController : MonoBehaviour {
     /// </summary>
     private void KillCharacter()
     {
+        GetComponent<PlayerStats>().CurrEXP -= GetComponent<PlayerStats>().ExperienceToNextLvl / 4;
+        if(GetComponent<PlayerStats>().CurrEXP<0)
+        {
+            GetComponent<PlayerStats>().CurrEXP = 0;
+        }
+        GetComponent<PlayerStats>().Gold = GetComponent<PlayerStats>().Gold / 5 * 4;
         HP = GetComponent<PlayerStats>().MaxHP;
         GetComponent<PlayerStats>().SaveState();
         SceneManager.LoadScene(GlobalControl.Instance.previousVisitedCity);
