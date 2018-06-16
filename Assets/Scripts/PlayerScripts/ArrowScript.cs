@@ -6,7 +6,7 @@ public class ArrowScript : MonoBehaviour {
 
     private float arrowSpeed;
 
-    private List<GameObject> enemies = new List<GameObject>();
+    private List<GameObject> Enemies = new List<GameObject>();
     private PlayerStats playerStats;
 
     Rigidbody2D rb;
@@ -23,6 +23,11 @@ public class ArrowScript : MonoBehaviour {
             arrowSpeed = value;
         }
     }
+    public void RemoveFromEnemies(GameObject enemy)
+    {
+        if (Enemies.Contains(enemy))
+            Enemies.Remove(enemy);
+    }
 
     // Use this for initialization
     void Start () {
@@ -38,15 +43,15 @@ public class ArrowScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
-            if (!enemies.Contains(other.gameObject))
+            if (!Enemies.Contains(other.gameObject))
             {
-                enemies.Add(other.gameObject);
+                Enemies.Add(other.gameObject);
                 DealDamage(other.gameObject);
             }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy") enemies.Remove(other.gameObject);
+        if (other.gameObject.tag == "Enemy") Enemies.Remove(other.gameObject);
     }
 
     void DealDamage(GameObject enemy)
@@ -56,8 +61,7 @@ public class ArrowScript : MonoBehaviour {
         if (enemy.GetComponent<MobStats>().HealthPoints <= 0)
         {
             Destroy(enemy.gameObject);
-            enemies.Remove(enemy);
-            Attacks.Instance.RemoveFromEnemies(enemy);
+            Enemies.Remove(enemy);
             playerStats.CurrEXP += 100;
             playerStats.Gold += 500;
         }

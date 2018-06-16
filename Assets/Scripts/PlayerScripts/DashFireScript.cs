@@ -6,13 +6,13 @@ public class DashFireScript : MonoBehaviour {
 
     public float FireDuration;
 
-    private List<GameObject> enemies = new List<GameObject>();
+    private List<GameObject> Enemies = new List<GameObject>();
     private PlayerStats playerStats;
     
     // Use this for initialization
     void Start () {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        StartCoroutine("DealDamage", enemies);
+        StartCoroutine("DealDamage", Enemies);
     }
 	
 	// Update is called once per frame
@@ -23,21 +23,21 @@ public class DashFireScript : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
-            if (!enemies.Contains(other.gameObject))
+            if (!Enemies.Contains(other.gameObject))
             {
-                enemies.Add(other.gameObject);
+                Enemies.Add(other.gameObject);
             }
 
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy") enemies.Remove(other.gameObject);
+        if (other.gameObject.tag == "Enemy") Enemies.Remove(other.gameObject);
     }
 
     IEnumerator DealDamage(List<GameObject> enemies)
     {
-        yield return new WaitForSeconds(1);
-        int damage = playerStats.Damage / 25;
+        yield return new WaitForSeconds(0.9f);
+        int damage = playerStats.Damage / 10;
         if (enemies.Count > 0)
         {
             for (int i = 0; i < enemies.Count; i++)
@@ -46,8 +46,7 @@ public class DashFireScript : MonoBehaviour {
                 if (enemies[i].GetComponent<MobStats>().HealthPoints <= 0)
                 {
                     Destroy(enemies[i].gameObject);
-                    enemies.Remove(enemies[i]);
-                    Attacks.Instance.RemoveFromEnemies(enemies[i]);
+                    Enemies.Remove(enemies[i]);
                     playerStats.CurrEXP += 100;
                     playerStats.Gold += 500;
                 }
