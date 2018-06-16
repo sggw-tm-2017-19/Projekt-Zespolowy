@@ -6,7 +6,7 @@ using System;
 public class MobStats : MonoBehaviour
 {
     private decimal attackSpeed;
-    private int armor, damage, healthPoints, maxHP;
+	private int armor, damage, healthPoints, maxHP;
 
     private enum Types { Melee, Ranged, Boss }
     private enum Bosses { Mob, Imp, Sukkub, Wizard }
@@ -18,6 +18,10 @@ public class MobStats : MonoBehaviour
     private int level;
 	[SerializeField]
 	private decimal moveSpeed;
+	[SerializeField]
+	private int gold;
+	[SerializeField]
+	private int exp;
 
     /// <summary>
     /// Zmiana statystyk po uderzeniu w moba
@@ -122,6 +126,30 @@ public class MobStats : MonoBehaviour
             maxHP = value;
         }
     }
+
+	public int Gold
+	{
+		get
+		{
+			return gold;
+		}
+		set
+		{
+			gold = value;
+		}
+	}
+
+	public int Exp
+	{
+		get
+		{
+			return exp;
+		}
+		set
+		{
+			exp = value;
+		}
+	}
 
     public bool Stun { get; set; }
 

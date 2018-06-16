@@ -7,30 +7,43 @@ public class MobMovement : MonoBehaviour
 {
 	public float speed;
 	private bool isMoving = false;
-	public Vector3 direction = new Vector2(-1, 0);
+	public Vector3 direction;
 	private GameObject player;
+
+	private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start ()
 	{
 		if (isMoving) transform.position += direction * speed;
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
         player = GlobalControl.Instance.Player;
-		if (transform.position.x - player.transform.position.x < 30 && !GetComponent<MobStats>().Stun) 
+
+		SetDirection ();
+			
+		if (Math.Abs(transform.position.x - player.transform.position.x ) < 30 && !GetComponent<MobStats>().Stun) 
 		{
 			StartMoving();
 		}
 
-		if (transform.position.x - player.transform.position.x < 10 || GetComponent<MobStats>().Stun) 
+		if (Math.Abs(transform.position.x - player.transform.position.x) < 5 || GetComponent<MobStats>().Stun) 
 		{
 			StopMoving();
 		} 
 
 		if (isMoving) transform.position += direction * speed;
+	}
+
+	private void SetDirection()
+	{
+		int direction = Math.Sign(player.transform.position.x - transform.position.x);
+		spriteRenderer.flipX = direction <= 0 ? true : false;
+		this.direction = new Vector2(direction, 0);
 	}
 
 	public void StopMoving()
