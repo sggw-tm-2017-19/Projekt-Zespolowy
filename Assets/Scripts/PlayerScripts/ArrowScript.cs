@@ -60,10 +60,7 @@ public class ArrowScript : MonoBehaviour {
         enemy.GetComponent<MobStats>().HealthPointsDown(damage);
         if (enemy.GetComponent<MobStats>().HealthPoints <= 0)
         {
-            Destroy(enemy.gameObject);
             Enemies.Remove(enemy);
-            playerStats.CurrEXP += 100;
-            playerStats.Gold += 500;
         }
     }
 }

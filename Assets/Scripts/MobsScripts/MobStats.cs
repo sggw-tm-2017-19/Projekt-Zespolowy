@@ -29,6 +29,12 @@ public class MobStats : MonoBehaviour
     public void HealthPointsDown(int takeDamage)
     {
         healthPoints -= Convert.ToInt32(takeDamage/Mathf.Sqrt(Armor));
+        if(healthPoints<=0)
+        {
+            GlobalControl.Instance.Player.GetComponent<PlayerStats>().Gold += gold;
+            GlobalControl.Instance.Player.GetComponent<PlayerStats>().CurrEXP += exp;
+            Destroy(gameObject);
+        }
     }
 
     public void GetStun(float time)
