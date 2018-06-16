@@ -17,9 +17,8 @@ public class Attacks : PlayerStats
 
     public float DashRange;
     public GameObject dashFirePrefab;
-    private Vector3 dashFireStartPosition;
-    private Vector3 dashFireEndPosition;
-    private SpriteRenderer dashFireSprite;
+    private Vector3 dashFirePosition;
+    private float dashFireWidth;
 
     private PlayerStats playerStats;
     private SpriteRenderer playerSprite;
@@ -48,7 +47,6 @@ public class Attacks : PlayerStats
         animator = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         piercingArrowSprite = piercingArrowPrefab.GetComponent<SpriteRenderer>();
-        dashFireSprite = dashFirePrefab.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -57,12 +55,11 @@ public class Attacks : PlayerStats
         waveSwordCounter -= Convert.ToDecimal(Time.deltaTime);
         piercingArrowCounter -= Convert.ToDecimal(Time.deltaTime);
         dashCounter -= Convert.ToDecimal(Time.deltaTime);
-
         if (Input.GetKeyDown(KeyCode.Z))
-            BasicAttack(Enemies);
+            BasicAttack();
 
         if (Input.GetKeyDown(KeyCode.X))
-            WaveSword(Enemies);
+            WaveSword();
 
         if (Input.GetKeyDown(KeyCode.C))
             PiercingArrow();
@@ -70,24 +67,44 @@ public class Attacks : PlayerStats
         if (Input.GetKeyDown(KeyCode.V))
             Dash();
 
+        if (basicAttackHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+        {
+            EnableCollider();
+            playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                Invoke("InvokeBasicAttack", animator.GetCurrentAnimatorStateInfo(0).length / 2);
+        }
+
+        if (waveSwordHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
+        {
+            EnableCollider();
+            playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+                Invoke("InvokeWaveSword", animator.GetCurrentAnimatorStateInfo(0).length / 2);
+        }
+
         if (basicAttackHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash &&
             waveSwordHash != animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             DisableCollider();
-        else
-        {
-            EnableCollider();
-            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
-        }
+
         if (piercingArrowHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
         {
             animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
                 Invoke("CreateArrow", animator.GetCurrentAnimatorStateInfo(0).length / 2);
         }
+
         if (dashHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
         {
             animator.speed = (float)(5m);
             MoveDash();
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
+            {
+                dashFirePosition = new Vector3(playerSprite.transform.position.x, playerSprite.transform.position.y - 2.2f);
+                Invoke("InvokeCreateFire", animator.GetCurrentAnimatorStateInfo(0).length/5);
+            }
         }
         if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != basicAttackHash &&
             animator.GetCurrentAnimatorStateInfo(0).fullPathHash != waveSwordHash &&
@@ -96,11 +113,6 @@ public class Attacks : PlayerStats
             animator.speed = 1;
     }
 
-    public void RemoveFromEnemies(GameObject enemy)
-    {
-        if(Enemies.Contains(enemy))
-            Enemies.Remove(enemy);
-    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -109,7 +121,8 @@ public class Attacks : PlayerStats
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy") Enemies.Remove(other.gameObject);
+        if (other.gameObject.tag == "Enemy")
+            Enemies.Remove(other.gameObject);
     }
 
     private void EnableCollider()
@@ -121,9 +134,12 @@ public class Attacks : PlayerStats
         AttackCollider.enabled = false;
     }
 
-    private void BasicAttack(List<GameObject> enemies)
+    private void InvokeBasicAttack()
     {
-        int damage = playerStats.Damage;
+        BasicAttack(Enemies);
+    }
+    private void BasicAttack()
+    {
         decimal cooldown = 3 - playerStats.AttackSpeed;
         if (cooldown < 0.3m) cooldown = 0.3m;
         if (basicAttackCounter <= 0)
@@ -136,55 +152,54 @@ public class Attacks : PlayerStats
                 AttackCollider.offset = new Vector2(-1f, 0);
             else
                 AttackCollider.offset = new Vector2(1f, 0);
-            EnableCollider();
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
-                if (enemies[i].GetComponent<MobStats>().HealthPoints <= 0)
-                {
-                    Destroy(enemies[i].gameObject);
-                    playerStats.CurrEXP += 500;
-                    playerStats.Gold += 500;
-                }
-            }
         }
     }
 
-    private void WaveSword(List<GameObject> enemies)
+    private void BasicAttack(List<GameObject> enemies)
     {
         int damage = playerStats.Damage;
-        decimal cooldown = 10 - playerStats.AttackSpeed;
-        if (cooldown < 1) cooldown = 1;
-        float stunTime = StunDuration + 10;
+        
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
+        }
+    }
+
+    private void InvokeWaveSword()
+    {
+        WaveSword(Enemies);
+    }
+    private void WaveSword()
+    {
+        decimal cooldown = 11 - playerStats.AttackSpeed;
+        if (cooldown < 2) cooldown = 2;
         if (waveSwordCounter <= 0)
         {
             waveSwordCounter = cooldown;
-            animator.speed = (float)(0.5m + playerStats.AttackSpeed/2);
+            animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
             animator.SetTrigger("WaveSword");
             AttackCollider.direction = CapsuleDirection2D.Horizontal;
             AttackCollider.size = new Vector2(WaveSwordRange, 4.5f);
             if (playerSprite.flipX)
-                AttackCollider.offset = new Vector2(-WaveSwordRange/2, 0);
+                AttackCollider.offset = new Vector2(-WaveSwordRange / 2, 0);
             else
-                AttackCollider.offset = new Vector2(WaveSwordRange/2, 0);
-            EnableCollider();
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                enemies[i].GetComponent<MobStats>().GetStun(stunTime);
-                enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
-                if (enemies[i].GetComponent<MobStats>().HealthPoints <= 0)
-                {
-                    Destroy(enemies[i].gameObject);
-                    playerStats.CurrEXP += 500;
-                    playerStats.Gold += 500;
-                }
-            }
+                AttackCollider.offset = new Vector2(WaveSwordRange / 2, 0);
+        }
+    }
+    private void WaveSword(List<GameObject> enemies)
+    {
+        int damage = playerStats.Damage;
+        float stunTime = StunDuration;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].GetComponent<MobStats>().GetStun(stunTime);
+            enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
         }
     }
 
     private void PiercingArrow()
     {
-        decimal cooldown = 4 - playerStats.AttackSpeed;
+        decimal cooldown = 5 - playerStats.AttackSpeed;
         if (cooldown < 1) cooldown = 1;
         if(piercingArrowCounter <= 0)
         {
@@ -212,8 +227,8 @@ public class Attacks : PlayerStats
 
     private void Dash()
     {
-        decimal cooldown = 20 - MoveSpeed;
-        if (cooldown < 1) cooldown = 1;
+        decimal cooldown = 20 - playerStats.MoveSpeed;
+        if (cooldown < 5) cooldown = 5;
         if (dashCounter <= 0)
         {
             dashCounter = cooldown;
@@ -222,14 +237,16 @@ public class Attacks : PlayerStats
     }
     private void MoveDash()
     {
-        dashFireStartPosition = playerSprite.transform.position;
-        dashFireSprite.flipX = !playerSprite.flipX;
-        dashFireStartPosition.y -= 1.8f;
-        dashFirePrefab.transform.position = dashFireStartPosition;
-        GameObject dashFire = Instantiate(dashFirePrefab);
-        float dashRange = DashRange + (float)MoveSpeed;
+        float dashRange = DashRange + (float)playerStats.MoveSpeed;
         if (playerSprite.flipX)
             dashRange = -dashRange;
         playerSprite.transform.Translate(dashRange*Time.deltaTime, 0, 0);
+    }
+    private void InvokeCreateFire()
+    {
+        GameObject dashFire = Instantiate(dashFirePrefab);
+        dashFire.transform.position = new Vector3((dashFirePosition.x + playerSprite.transform.position.x) / 2, dashFirePosition.y);
+        dashFireWidth = dashFirePosition.x - playerSprite.transform.position.x;
+        dashFire.transform.localScale = new Vector3(dashFireWidth/12, dashFire.transform.localScale.y, 0);
     }
 }
