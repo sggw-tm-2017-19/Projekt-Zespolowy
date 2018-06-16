@@ -15,7 +15,6 @@ TextureImporter:
     21300020: explosion3
     21300022: DashFire1
     21300024: DashFire2
-    21300026: tornado1
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -131,6 +130,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d240f41466c52264aa8003766016b7a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornado1
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 4530
+        width: 512
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9248419097ca467429def716c6da0a57
       vertices: []
       indices: 
       edges: []
@@ -259,8 +278,8 @@ TextureImporter:
       name: explosion2
       rect:
         serializedVersion: 2
-        x: 1677
-        y: 2435
+        x: 1689
+        y: 2430
         width: 1462
         height: 1364
       alignment: 0
@@ -299,9 +318,9 @@ TextureImporter:
       name: DashFire1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 2803
-        width: 950
+        x: 168
+        y: 5219
+        width: 945
         height: 88
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -316,13 +335,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tornado1
+      name: DashFire2
       rect:
         serializedVersion: 2
-        x: 2085
-        y: 4512
-        width: 523
-        height: 824
+        x: 1117
+        y: 5226
+        width: 942
+        height: 88
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -330,7 +349,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 923f9e2d7e6c918428b5015cc01b59d0
+      spriteID: d37dd7360b830954baf87ed9d63bb489
       vertices: []
       indices: 
       edges: []
