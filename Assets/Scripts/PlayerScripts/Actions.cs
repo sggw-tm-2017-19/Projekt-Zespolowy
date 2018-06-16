@@ -57,11 +57,16 @@ public class Actions : MonoBehaviour
         //Interaction
         if (Input.GetKeyDown(KeyCode.Space) && tempMove == 0 && isGrounded)
         {
+            int i = 0;
             rb.OverlapCollider(cFilt, overlapped);
             //NPC
-            if (overlapped[0].gameObject.layer == 10)
+            while (i<10 && overlapped[i].gameObject.layer != 10)
             {
-                overlapped[0].gameObject.GetComponent<NPCInteraction>().Test();
+                i++;
+            }
+            if (i < 10)
+            {
+                overlapped[i].gameObject.GetComponent<NPCInteraction>().Test();
             }
         }
     }

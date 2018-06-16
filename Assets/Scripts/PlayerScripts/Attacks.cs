@@ -184,7 +184,6 @@ public class Attacks : PlayerStats
 
     private void PiercingArrow()
     {
-        playerStats.CurrEXP += 500000;
         decimal cooldown = 4 - playerStats.AttackSpeed;
         if (cooldown < 1) cooldown = 1;
         if(piercingArrowCounter <= 0)
