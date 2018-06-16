@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
 
-    private enum Scenes { Wioska, Mapa1, Mapa2, Mapa1_1, Mapa2_1, Elfy }
+    private enum Scenes { Wioska, Elfy, Mapa }
+    private enum Maps { Miasto, Mapa1_1, Mapa1, Mapa2_1, Mapa2, Mapa3_1, Mapa3}
     [SerializeField]
     private Scenes destination;
+    [SerializeField]
+    private Maps mapa;
     [SerializeField]
     private float posX;
     [SerializeField]
@@ -22,7 +25,15 @@ public class Teleport : MonoBehaviour
             GlobalControl.Instance.posX = posX;
             GlobalControl.Instance.posY = posY;
             GlobalControl.Instance.posZ = GlobalControl.Instance.Player.transform.position.z;
-            SceneManager.LoadScene(destination.ToString());
+            if (destination.ToString() != "Mapa")
+            {
+                GlobalControl.Instance.previousVisitedCity = destination.ToString();
+                SceneManager.LoadScene(destination.ToString());
+            }
+            else
+            {
+                    SceneManager.LoadScene(mapa.ToString());
+            }
         }
     }
 }

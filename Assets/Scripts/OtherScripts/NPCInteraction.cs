@@ -11,7 +11,6 @@ public class NPCInteraction : MonoBehaviour {
     int straznike;//straznik wioska elfow dialog
     int krolowa;//krolowa elfow dialog
     int starszy;//starszy wioski dialog
-    int randomnpc = 0;
 
     // Use this for initialization
     void Start ()
@@ -221,19 +220,6 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                 }
                 starszy++;
-                break;
-            case "RandomNPC":
-                switch (randomnpc)
-                {
-                    case 0:
-                        dialogueText.text = "Odczep się, nie chce z Tobą gadać";
-                        break;
-                    default:
-                        GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
-                        dialogueManager.SetActive(false);
-                        break;
-                }
-                randomnpc++;
                 break;
             case "Kowal":
                 GlobalControl.Instance.blacksmith.SetActive(true);

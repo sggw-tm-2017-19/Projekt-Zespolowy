@@ -9,7 +9,7 @@ public class MobStats : MonoBehaviour
     private int armor, damage, healthPoints, maxHP;
 
     private enum Types { Melee, Ranged, Boss }
-    private enum Bosses { Imp, Skkub, Wizard }
+    private enum Bosses { Mob, Imp, Sukkub, Wizard }
     [SerializeField]
     private Types Mob;
     [SerializeField]
@@ -141,7 +141,7 @@ public class MobStats : MonoBehaviour
 						HealthPoints = Level * 50;
 						MaxHP = Level * 50;
 						break;
-                    case Bosses.Skkub:
+                    case Bosses.Sukkub:
 						AttackSpeed = 8;
 						Armor = 15;
 						Damage = Level * 2;

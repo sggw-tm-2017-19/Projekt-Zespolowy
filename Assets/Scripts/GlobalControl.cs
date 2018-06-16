@@ -18,25 +18,31 @@ public class GlobalControl : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (SceneManager.GetActiveScene().name!="KoniecGry")
         {
-            Player = GameObject.Find("Player");
-            blacksmith = GameObject.Find("BlacksmithInventory");
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
+            if (Instance == null)
+            {
+                Player = GameObject.Find("Player");
+                blacksmith = GameObject.Find("BlacksmithInventory");
+                DontDestroyOnLoad(gameObject);
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
     public void Update()
     {
-        if(currMap!=SceneManager.GetActiveScene().name)
+        if (SceneManager.GetActiveScene().name != "KoniecGry")
         {
-            Teleported();
-            currMap = SceneManager.GetActiveScene().name;
+            if (currMap != SceneManager.GetActiveScene().name)
+            {
+                Teleported();
+                currMap = SceneManager.GetActiveScene().name;
+            }
         }
     }
 
