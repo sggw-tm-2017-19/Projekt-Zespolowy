@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public enum RotationMode { Rotate, FlipOnly, None}
 public class ProjectileScript : MonoBehaviour {
@@ -14,6 +16,7 @@ public class ProjectileScript : MonoBehaviour {
 
     private Vector2 movementDirection;
     private bool playerHit = false;
+    private int[] ingoreObjects = { 0, 11 };
 
     Vector3 Position { get { return transform.position; } set { transform.position = value; } }
 
@@ -23,14 +26,15 @@ public class ProjectileScript : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         GameObject.Destroy(gameObject, lifeTime);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
         Position += (Vector3)movementDirection * speed * Time.deltaTime;
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,7 +44,7 @@ public class ProjectileScript : MonoBehaviour {
             otherObject.SendMessage("TakeDamage", damage);
             playerHit = true;
         }
-        if (otherObject.tag != "Enemy" && destroyOnObstacles) 
+        if (destroyOnObstacles && !ingoreObjects.Contains(otherObject.layer))
             Destroy(gameObject);
     }
 
@@ -64,11 +68,11 @@ public class ProjectileScript : MonoBehaviour {
         switch (rotationMode)
         {
             case RotationMode.Rotate:
-                transform.rotation= Quaternion.Euler(0, 0, angle);
+                transform.rotation = Quaternion.Euler(0, 0, angle);
                 break;
             case RotationMode.FlipOnly:
                 float newRotation = transform.rotation.eulerAngles.z * Mathf.Rad2Deg + angle;
-                if(newRotation>90 && newRotation <= 270)
+                if (newRotation > 90 && newRotation <= 270)
                 {
                     transform.rotation = Quaternion.Euler(Vector3.forward * 180);
                     GetComponent<SpriteRenderer>().flipY = true;
@@ -85,6 +89,6 @@ public class ProjectileScript : MonoBehaviour {
                 break;
         }
     }
-
-
 }
+
+
