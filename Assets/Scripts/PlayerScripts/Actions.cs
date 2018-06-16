@@ -14,6 +14,8 @@ public class Actions : MonoBehaviour
     ContactFilter2D cFilt = new ContactFilter2D();
     private Collider2D[] overlapped;
 
+    public bool IsGrounded { get { return isGrounded; } }
+
     // Use this for initialization
     void Start()
     {
