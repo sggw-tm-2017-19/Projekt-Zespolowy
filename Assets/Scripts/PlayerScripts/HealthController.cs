@@ -32,7 +32,7 @@ public class HealthController : MonoBehaviour {
     /// <summary>
     /// Co ma się stać kiedy postać zostanie zabita
     /// </summary>
-    private void KillCharacter()
+    public void KillCharacter()
     {
         GetComponent<PlayerStats>().CurrEXP -= GetComponent<PlayerStats>().ExperienceToNextLvl / 4;
         if(GetComponent<PlayerStats>().CurrEXP<0)
@@ -41,7 +41,14 @@ public class HealthController : MonoBehaviour {
         }
         GetComponent<PlayerStats>().Gold = GetComponent<PlayerStats>().Gold / 5 * 4;
         HP = GetComponent<PlayerStats>().MaxHP;
+        if (SceneManager.GetActiveScene().name != GlobalControl.Instance.previousVisitedCity)
+        {
         GetComponent<PlayerStats>().SaveState();
-        SceneManager.LoadScene(GlobalControl.Instance.previousVisitedCity);
+            SceneManager.LoadScene(GlobalControl.Instance.previousVisitedCity);
+        }
+        else
+        {
+            transform.SetPositionAndRotation(new Vector3(0,0, GlobalControl.Instance.posZ), new Quaternion(0, 0, 0, 0));
+        }
     }
 }

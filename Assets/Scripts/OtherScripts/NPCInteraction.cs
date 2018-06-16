@@ -7,6 +7,7 @@ public class NPCInteraction : MonoBehaviour {
     
     public Text dialogueText;
     public GameObject dialogueManager;
+    public Text qLog;
     int straznikl;//straznik wioska ludzi dialog
     int straznike;//straznik wioska elfow dialog
     int krolowa;//krolowa elfow dialog
@@ -116,6 +117,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 3:
                         dialogueText.text = "May fortune favour you in the upcoming battle.";
+                        qLog.text += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
                         krolowa = 4;
                         break;
                     case 6:
@@ -174,6 +176,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 2:
                         dialogueText.text = "Please help us defend the village and save your brother!";
+                        qLog.text += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
                         starszy = 3;
                         break;
                     case 5:
