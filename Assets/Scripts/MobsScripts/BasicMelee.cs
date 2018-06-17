@@ -51,7 +51,7 @@ public class BasicMelee : MonoBehaviour
 
     private void Attack(GameObject gameObject)
     {
-        Damage += GetComponent<MobStats>().Damage;
+        int dmg = Damage * GetComponent<MobStats>().Damage;
         animator.SetTrigger(trigger);
         gameObject.SendMessage("TakeDamage", Damage, SendMessageOptions.DontRequireReceiver);
     }

@@ -29,7 +29,7 @@ public class HealthController : MonoBehaviour {
     {
         if (rnd.NextDouble() * 100 > (double)GetComponent<PlayerStats>().Dodge)
         {
-            int finalDamage = damage > Armor ? damage - Armor : 0;
+            int finalDamage = damage / (int)Mathf.Sqrt(Armor);
             HP -= finalDamage;
         }
     }
