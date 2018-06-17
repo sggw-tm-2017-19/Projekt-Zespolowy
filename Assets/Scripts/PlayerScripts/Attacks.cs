@@ -255,7 +255,7 @@ public class Attacks : PlayerStats
     }
     private void WaveSword(List<GameObject> enemies)
     {
-        int damage = playerStats.Damage;
+        int damage = playerStats.Damage*2;
         float stunTime = StunDuration;
         for (int i = 0; i < enemies.Count; i++)
         {

@@ -62,11 +62,11 @@ public class Actions : MonoBehaviour
             int i = 0;
             rb.OverlapCollider(cFilt, overlapped);
             //NPC
-            while (i<10 && overlapped[i].gameObject.layer != 10)
+            while (i<10 && overlapped[i]!=null && overlapped[i].gameObject.layer != 10)
             {
                 i++;
             }
-            if (i < 10)
+            if (i < 10 && overlapped[i]!=null)
             {
                 overlapped[i].gameObject.GetComponent<NPCInteraction>().Test();
             }

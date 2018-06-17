@@ -56,7 +56,7 @@ public class ArrowScript : MonoBehaviour {
 
     void DealDamage(GameObject enemy)
     {
-        int damage = playerStats.Damage /2;
+        int damage = playerStats.Damage /3*2;
         if (enemy != null)
         {
             if (enemy.GetComponent<MobStats>().HealthPoints-(damage/Mathf.Sqrt(GlobalControl.Instance.armor)) <= 0)
