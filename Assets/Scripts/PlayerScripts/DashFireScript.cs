@@ -42,10 +42,13 @@ public class DashFireScript : MonoBehaviour {
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
-                if (enemies[i].GetComponent<MobStats>().HealthPoints <= 0)
+                if (enemies[i] != null)
                 {
-                    Enemies.Remove(enemies[i]);
+                    if (enemies[i].GetComponent<MobStats>().HealthPoints-(damage / Mathf.Sqrt(GlobalControl.Instance.armor)) <= 0)
+                    {
+                        Enemies.Remove(enemies[i]);
+                    }
+                    enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
                 }
             }
         }

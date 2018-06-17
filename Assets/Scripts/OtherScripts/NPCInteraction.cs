@@ -7,20 +7,18 @@ public class NPCInteraction : MonoBehaviour {
     
     public Text dialogueText;
     public GameObject dialogueManager;
-    public Text qLog;
     int straznikl;//straznik wioska ludzi dialog
     int straznike;//straznik wioska elfow dialog
     int krolowa;//krolowa elfow dialog
     int starszy;//starszy wioski dialog
 
-    // Use this for initialization
-    void Start ()
+    public void Start()
     {
-        straznikl = 0;
-        straznike = 0;
-        krolowa = 0;
-        starszy = 0;
-	}
+        straznike = GlobalControl.Instance.straznike;
+        straznikl = GlobalControl.Instance.straznikl;
+        krolowa = GlobalControl.Instance.krolowa;
+        starszy = GlobalControl.Instance.starszy;
+    }
 
     public void Test()
     {
@@ -117,7 +115,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 3:
                         dialogueText.text = "May fortune favour you in the upcoming battle.";
-                        qLog.text += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
+                        GlobalControl.Instance.qLog += "\n\n- Przegoń Sukkuba i pokonaj Czarnoksiężnika";
                         krolowa = 4;
                         break;
                     case 6:
@@ -176,7 +174,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 2:
                         dialogueText.text = "Please help us defend the village and save your brother!";
-                        qLog.text += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
+                        GlobalControl.Instance.qLog += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
                         starszy = 3;
                         break;
                     case 5:

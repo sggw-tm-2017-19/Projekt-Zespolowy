@@ -225,7 +225,10 @@ public class Attacks : PlayerStats
         
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
+            if (enemies[i] != null)
+            {
+                enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
+            }
         }
     }
 
@@ -256,8 +259,11 @@ public class Attacks : PlayerStats
         float stunTime = StunDuration;
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].GetComponent<MobStats>().GetStun(stunTime);
-            enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
+            if (enemies[i] != null)
+            {
+                enemies[i].GetComponent<MobStats>().GetStun(stunTime);
+                enemies[i].GetComponent<MobStats>().HealthPointsDown(damage);
+            }
         }
     }
 

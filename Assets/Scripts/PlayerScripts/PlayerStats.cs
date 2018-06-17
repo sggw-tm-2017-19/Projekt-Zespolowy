@@ -163,7 +163,7 @@ public class PlayerStats : MonoBehaviour {
         statPoints -= 1;
         defense += 1;
         armor += 5;
-        dodge += decimal.Parse("0.2");
+        dodge += decimal.Parse("0.5");
     }
 
     /// <summary>
@@ -204,7 +204,7 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2, belt - 1) * 100);
         belt++;
-        dodge += decimal.Parse("0.2");
+        dodge += decimal.Parse("0.5");
     }
 
     /// <summary>

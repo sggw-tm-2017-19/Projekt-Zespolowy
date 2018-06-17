@@ -14,6 +14,7 @@ public class BasicRange : MonoBehaviour {
     public Transform ProjectileStartPoint;
     public Vector2 direction;
     public string trigger;
+    public int damage;
     
     
     private float timeCount = 0;
@@ -44,6 +45,7 @@ public class BasicRange : MonoBehaviour {
     {
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = ProjectileStartPoint.position;
+        projectile.GetComponent<ProjectileScript>().damage = damage+GetComponent<MobStats>().Damage;
 
         if (trajectory == ProjectileTrajectory.ConstantDirection)
             projectile.SendMessage("setDirection", this.direction);

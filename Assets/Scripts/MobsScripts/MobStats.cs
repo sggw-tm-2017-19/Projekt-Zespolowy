@@ -22,6 +22,8 @@ public class MobStats : MonoBehaviour
 	private int gold;
 	[SerializeField]
 	private int exp;
+    [SerializeField]
+    private bool unique;
 
     /// <summary>
     /// Zmiana statystyk po uderzeniu w moba
@@ -31,6 +33,26 @@ public class MobStats : MonoBehaviour
         healthPoints -= Convert.ToInt32(takeDamage/Mathf.Sqrt(Armor));
         if(healthPoints<=0)
         {
+            if(unique==true)
+            {
+                if(Boss==Bosses.Imp)
+                {
+                    GlobalControl.Instance.straznikl = 10;
+                    GlobalControl.Instance.starszy = 10;
+                }
+                if(Boss ==Bosses.Sukkub)
+                {
+                    GlobalControl.Instance.straznike = 10;
+                    GlobalControl.Instance.krolowa = 10;
+                }
+                if(Boss==Bosses.Wizard)
+                {
+                    GlobalControl.Instance.straznikl = 20;
+                    GlobalControl.Instance.straznike = 20;
+                    GlobalControl.Instance.starszy = 20;
+                    GlobalControl.Instance.krolowa = 20;
+                }
+            }
             GlobalControl.Instance.Player.GetComponent<PlayerStats>().Gold += gold;
             GlobalControl.Instance.Player.GetComponent<PlayerStats>().CurrEXP += exp;
             Destroy(gameObject);
@@ -162,6 +184,21 @@ public class MobStats : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if(unique==true)
+        {
+            if (Boss == Bosses.Imp&& GlobalControl.Instance.starszy >= 10)
+            {
+                Destroy(gameObject);
+            }
+            if (Boss == Bosses.Sukkub&& GlobalControl.Instance.krolowa >= 10)
+            {
+                Destroy(gameObject);
+            }
+            if (Boss == Bosses.Wizard&& GlobalControl.Instance.krolowa >= 20)
+            {
+                Destroy(gameObject);
+            }
+        }
         Stun = false;
         switch (Mob)
         {

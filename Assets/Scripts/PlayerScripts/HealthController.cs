@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HealthController : MonoBehaviour {
-    
+
+    System.Random rnd = new System.Random();
+
     private int HP {
         get { return GetComponent<PlayerStats>().HealthPoints; }
         set { GetComponent<PlayerStats>().HealthPoints = value; } }
@@ -25,8 +27,11 @@ public class HealthController : MonoBehaviour {
     /// <param name="damage">Liczba punktów obrażeń</param>
     public void TakeDamage(int damage)
     {
-        int finalDamage = damage > Armor ? damage - Armor : 0;
-        HP -= finalDamage;
+        if (rnd.NextDouble() * 100 > (double)GetComponent<PlayerStats>().Dodge)
+        {
+            int finalDamage = damage > Armor ? damage - Armor : 0;
+            HP -= finalDamage;
+        }
     }
 
     /// <summary>
