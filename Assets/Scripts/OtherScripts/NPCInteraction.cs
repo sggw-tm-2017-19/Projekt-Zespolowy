@@ -12,7 +12,7 @@ public class NPCInteraction : MonoBehaviour {
     int krolowa;//krolowa elfow dialog
     int starszy;//starszy wioski dialog
 
-    public void Start()
+    public void Update()
     {
         straznike = GlobalControl.Instance.straznike;
         straznikl = GlobalControl.Instance.straznikl;
@@ -32,7 +32,7 @@ public class NPCInteraction : MonoBehaviour {
                 {
                     case 0://przed pierwszym bossem
                         dialogueText.text = "Not now " + GlobalControl.Instance.Player.name.ToString() + ", we need to fight off the demons first!";
-                        straznikl = -2;
+                        GlobalControl.Instance.straznikl = -2;
                         break;
                     case 10://po pierwszym bossie
                         dialogueText.text = "Ah, " + GlobalControl.Instance.Player.name.ToString() + ", do you need something?";
@@ -42,11 +42,11 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 12:
                         dialogueText.text = "You are going now? Farewell and good luck then.";
-                        straznikl = 13;
+                        GlobalControl.Instance.straznikl = 13;
                         break;
                     case 15:
                         dialogueText.text = "Show these demons what you can do!";
-                        straznikl = 13;
+                        GlobalControl.Instance.straznikl = 13;
                         break;
                     case 20://po ostatnim bossie
                         dialogueText.text = "You have saved not only your brother, but also us all.";
@@ -56,25 +56,25 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 22:
                         dialogueText.text = "I'll see you later, " + GlobalControl.Instance.Player.name.ToString() + ".";
-                        straznikl = 23;
+                        GlobalControl.Instance.straznikl = 23;
                         break;
                     case 25:
                         dialogueText.text = "Do you need something, " + GlobalControl.Instance.Player.name.ToString() + "?";
-                        straznikl = 23;
+                        GlobalControl.Instance.straznikl = 23;
                         break;
                     default:
                         GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
-                straznikl++;
+                GlobalControl.Instance.straznikl++;
                 break;
             case "StraznikElf":
                 switch (straznike)
                 {
                     case 0://dialog startowy
                         dialogueText.text = "Not now human, the city needs your help!";
-                        straznike = -2;
+                        GlobalControl.Instance.straznike = -2;
                         break;
                     case 10://po pokonaniu drugiego bossa
                         dialogueText.text = "Thank you for your help with the demons, human.";
@@ -84,22 +84,22 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 12:
                         dialogueText.text = "Good fortune to you.";
-                        straznike = 13;
+                        GlobalControl.Instance.straznike = 13;
                         break;
                     case 15:
                         dialogueText.text = "Yes?";
-                        straznike = 13;
+                        GlobalControl.Instance.straznike = 13;
                         break;
                     case 20://po pokonaniu ostatniego bossa
                         dialogueText.text = "You have saved the world as we know it human, for that you have my utmost respect.";
-                        straznike = 18;
+                        GlobalControl.Instance.straznike = 18;
                         break;
                     default:
                         GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
-                straznike++;
+                GlobalControl.Instance.straznike++;
                 break;
             case "Królowa":
                 switch (krolowa)
@@ -116,11 +116,11 @@ public class NPCInteraction : MonoBehaviour {
                     case 3:
                         dialogueText.text = "May fortune favour you in the upcoming battle.";
                         GlobalControl.Instance.qLog += "\n\n- Przegoń Sukkuba i pokonaj Czarnoksiężnika";
-                        krolowa = 4;
+                        GlobalControl.Instance.krolowa = 4;
                         break;
                     case 6:
                         dialogueText.text = "What are you waiting for? Go slay the demon and save my city!";
-                        krolowa = 4;
+                        GlobalControl.Instance.krolowa = 4;
                         break;
                     case 10://po pokonaniu drugiego bossa
                         dialogueText.text = "Thank you for your help, girl. As promised I opened a portal for you. It leads to the Isle of Demons.";
@@ -130,11 +130,11 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 12:
                         dialogueText.text = "Farewell.";
-                        krolowa = 13;
+                        GlobalControl.Instance.krolowa = 13;
                         break;
                     case 15:
                         dialogueText.text = "Do you need anything else?";
-                        krolowa = 13;
+                        GlobalControl.Instance.krolowa = 13;
                         break;
                     case 20://po pokonaniu ostatniego bossa
                         dialogueText.text = "I have heard that you managed to save your brother and vanquish the forces of evil.";
@@ -154,14 +154,14 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 27:
                         dialogueText.text = "Farewell.";
-                        krolowa = 24;
+                        GlobalControl.Instance.krolowa = 24;
                         break;
                     default:
                         GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
-                krolowa++;
+                GlobalControl.Instance.krolowa++;
                 break;
             case "StarszyWioski":
                 switch (starszy)
@@ -175,11 +175,11 @@ public class NPCInteraction : MonoBehaviour {
                     case 2:
                         dialogueText.text = "Please help us defend the village and save your brother!";
                         GlobalControl.Instance.qLog += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
-                        starszy = 3;
+                        GlobalControl.Instance.starszy = 3;
                         break;
                     case 5:
                         dialogueText.text = "There is no time to waste! Hurry to the battlefield!";
-                        starszy = 3;
+                        GlobalControl.Instance.starszy = 3;
                         break;
                     case 10://po pierwszym bossie
                         dialogueText.text = "You managed to drive the demons back? I am so glad.";
@@ -195,11 +195,11 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 14:
                         dialogueText.text = "Take care of yourself!";
-                        starszy = 15;
+                        GlobalControl.Instance.starszy = 15;
                         break;
                     case 17:
                         dialogueText.text = "Good luck, " + GlobalControl.Instance.Player.name.ToString() + ".";
-                        starszy = 15;
+                        GlobalControl.Instance.starszy = 15;
                         break;
                     case 20://po pokonaniu ostatniego bossa
                         dialogueText.text = "You saved your brother and us all...";
@@ -209,18 +209,18 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 22:
                         dialogueText.text = "Thank you in the name of the whole village, you honour us all.";
-                        starszy = 23;
+                        GlobalControl.Instance.starszy = 23;
                         break;
                     case 25:
                         dialogueText.text = "Thank you again, " + GlobalControl.Instance.Player.name.ToString() + ".";
-                        starszy = 23;
+                        GlobalControl.Instance.starszy = 23;
                         break;
                     default:
                         GlobalControl.Instance.Player.GetComponent<Actions>().CanWalk = true;
                         dialogueManager.SetActive(false);
                         break;
                 }
-                starszy++;
+                GlobalControl.Instance.starszy++;
                 break;
             case "Kowal":
                 GlobalControl.Instance.blacksmith.SetActive(true);

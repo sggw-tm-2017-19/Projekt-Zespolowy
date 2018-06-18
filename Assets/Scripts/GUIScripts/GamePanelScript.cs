@@ -59,8 +59,4 @@ public class GamePanelScript : MonoBehaviour {
             skillCd5.text = "";
         }
     }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
 }
