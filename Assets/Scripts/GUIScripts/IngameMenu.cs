@@ -10,7 +10,7 @@ public class IngameMenu : MonoBehaviour
     public GameObject dialogue;
     public void LoadGameFile()
     {
-        StreamReader sr = new StreamReader(Application.persistentDataPath + "/SaveFile.dat");
+        StreamReader sr = new StreamReader("C:/tmp/SaveFile_ProjektTM.dat");
         string data = sr.ReadToEnd();
         sr.Close();
         XmlSerializer serializer = new XmlSerializer(data.GetType());
@@ -72,7 +72,7 @@ public class IngameMenu : MonoBehaviour
         GlobalControl.Instance.Player.GetComponent<PlayerStats>().SaveState();
         GlobalControl data = GlobalControl.Instance;
         string saved = data.level + ";" + data.currEXP + ";" + data.experienceToNextLvl + ";" + data.statPoints + ";" + data.vitality + ";" + data.agility + ";" + data.strength + ";" + data.defense + ";" + data.healthPoints + ";" + data.maxHP + ";" + data.healthRegen + ";" + data.moveSpeed + ";" + data.attackSpeed + ";" + data.dodge + ";" + data.armor + ";" + data.damage + ";" + data.helmet + ";" + data.pauldrons + ";" + data.breastplate + ";" + data.belt + ";" + data.rHand + ";" + data.lHand + ";" + data.boots + ";" + data.gold + ";" + data.currMap + ";" + data.posX + ";" + data.posY + ";" + data.posZ + ";" + data.previousVisitedCity + ";" + data.krolowa + ";" + data.starszy + ";" + data.straznike + ";" + data.straznikl + ";" + data.qLog;
-        FileStream fs = File.Create(Application.persistentDataPath + "/SaveFile.dat");
+        FileStream fs = File.Create("C:/tmp/SaveFile_ProjektTM.dat");
         XmlSerializer serializer = new XmlSerializer(saved.GetType());
         MemoryStream streamer = new MemoryStream();
         serializer.Serialize(streamer, saved);
