@@ -8,6 +8,7 @@ public class Attacks : PlayerStats
 {
     public static Attacks Instance;
 
+    public bool canAttack = true;
     public float WaveSwordRange;
     public float StunDuration;
     
@@ -115,6 +116,8 @@ public class Attacks : PlayerStats
         healCounter -= Convert.ToDecimal(Time.deltaTime);
         if (GetComponent<Actions>().CanWalk)
         {
+            if(canAttack)
+                {
             if (Input.GetKeyDown(KeyCode.Z))
                 BasicAttack();
 
@@ -126,14 +129,16 @@ public class Attacks : PlayerStats
 
             if (Input.GetKeyDown(KeyCode.V))
                 Dash();
+            }
 
             if (Input.GetKeyDown(KeyCode.B))
                 Heal();
 
             if (basicAttackHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             {
+                canAttack = false;
                 EnableCollider();
-                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x, playerSprite.transform.position.y + 0.0001f);
                 animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
                     Invoke("InvokeBasicAttack", animator.GetCurrentAnimatorStateInfo(0).length / 2);
@@ -141,8 +146,9 @@ public class Attacks : PlayerStats
 
             if (waveSwordHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             {
+                canAttack = false;
                 EnableCollider();
-                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x + 0.0001f, playerSprite.transform.position.y);
+                playerSprite.transform.position = new Vector3(playerSprite.transform.position.x, playerSprite.transform.position.y + 0.0001f);
                 animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
                     Invoke("InvokeWaveSword", animator.GetCurrentAnimatorStateInfo(0).length / 2);
@@ -154,6 +160,7 @@ public class Attacks : PlayerStats
 
             if (piercingArrowHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             {
+                canAttack = false;
                 animator.speed = (float)(0.5m + playerStats.AttackSpeed / 2);
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
                     Invoke("CreateArrow", animator.GetCurrentAnimatorStateInfo(0).length / 2);
@@ -161,6 +168,7 @@ public class Attacks : PlayerStats
 
             if (dashHash == animator.GetCurrentAnimatorStateInfo(0).fullPathHash)
             {
+                canAttack = false;
                 animator.speed = (float)(5m);
                 MoveDash();
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 0)
@@ -173,7 +181,10 @@ public class Attacks : PlayerStats
                 animator.GetCurrentAnimatorStateInfo(0).fullPathHash != waveSwordHash &&
                 animator.GetCurrentAnimatorStateInfo(0).fullPathHash != piercingArrowHash &&
                 animator.GetCurrentAnimatorStateInfo(0).fullPathHash != dashHash)
+                {
                 animator.speed = 1;
+                canAttack=true;
+            }
         }
     }
 
@@ -204,8 +215,8 @@ public class Attacks : PlayerStats
     }
     private void BasicAttack()
     {
-        decimal cooldown = 3 - playerStats.AttackSpeed;
-        if (cooldown < 0.3m) cooldown = 0.3m;
+        decimal cooldown = 2m - playerStats.AttackSpeed;
+        if (cooldown < 0.2m) cooldown = 0.2m;
         if (basicAttackCounter <= 0)
         {
             basicAttackCounter = cooldown;
@@ -238,7 +249,7 @@ public class Attacks : PlayerStats
     }
     private void WaveSword()
     {
-        decimal cooldown = 11 - playerStats.AttackSpeed;
+        decimal cooldown = 10 - playerStats.AttackSpeed;
         if (cooldown < 2) cooldown = 2;
         if (waveSwordCounter <= 0)
         {
@@ -297,8 +308,8 @@ public class Attacks : PlayerStats
 
     private void Dash()
     {
-        decimal cooldown = 20 - playerStats.MoveSpeed;
-        if (cooldown < 5) cooldown = 5;
+        decimal cooldown = 10 - playerStats.MoveSpeed;
+        if (cooldown < 1) cooldown = 1;
         if (dashCounter <= 0)
         {
             dashCounter = cooldown;
@@ -322,7 +333,7 @@ public class Attacks : PlayerStats
     private void Heal()
     {
         int healthUp = playerStats.MaxHP / 5;
-        decimal cooldown = 30 - playerStats.AttackSpeed;
+        decimal cooldown = 20 - playerStats.AttackSpeed;
         if (cooldown < 5) cooldown = 5;
         if (healCounter <= 0)
         {

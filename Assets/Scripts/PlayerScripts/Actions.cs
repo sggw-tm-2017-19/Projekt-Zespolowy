@@ -56,6 +56,14 @@ public class Actions : MonoBehaviour
                 anim.SetBool("Grounded", isGrounded);
             }
         }
+        if(tempMove !=0 || !isGrounded)
+        {
+            GetComponent<Attacks>().canAttack=false;
+        }
+        else
+        {
+            GetComponent<Attacks>().canAttack =true;
+        }
         //Interaction
         if (Input.GetKeyDown(KeyCode.Space) && tempMove == 0 && isGrounded)
         {

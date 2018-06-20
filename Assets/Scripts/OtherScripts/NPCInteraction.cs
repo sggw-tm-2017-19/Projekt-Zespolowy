@@ -115,7 +115,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 3:
                         dialogueText.text = "May fortune favour you in the upcoming battle.";
-                        GlobalControl.Instance.qLog += "\n\n- Przegoń Sukkuba i pokonaj Czarnoksiężnika";
+                        GlobalControl.Instance.qLog += "\n\n- Drive the Sukkubus away and defeat the Warlock";
                         GlobalControl.Instance.krolowa = 4;
                         break;
                     case 6:
@@ -174,7 +174,7 @@ public class NPCInteraction : MonoBehaviour {
                         break;
                     case 2:
                         dialogueText.text = "Please help us defend the village and save your brother!";
-                        GlobalControl.Instance.qLog += "\n\n- Przegoń Impa, a następnie porozmawiaj z Królową Elfów";
+                        GlobalControl.Instance.qLog += "\n\n- Drive the Imp away and speak with the Elven Queen";
                         GlobalControl.Instance.starszy = 3;
                         break;
                     case 5:

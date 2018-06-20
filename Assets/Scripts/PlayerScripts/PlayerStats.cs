@@ -114,12 +114,13 @@ public class PlayerStats : MonoBehaviour {
     {
         level += 1;
         moveSpeed += decimal.Parse("0.1");
-        maxHP += 10;
-        healthPoints += 10;
-        statPoints += 1;
-        damage += 5;
-        armor += 1;
+        maxHP += 10*level;
+        healthPoints += 10*level;
+        statPoints += Mathf.CeilToInt(level/10f);
+        damage += 5*level/2;
+        armor += 1*level/4;
         experienceToNextLvl = Convert.ToInt32(experienceToNextLvl * 3 / 2.0);
+        healthRegen+=(int)Math.Sqrt(level);
     }
 
     /// <summary>
@@ -131,7 +132,7 @@ public class PlayerStats : MonoBehaviour {
         vitality += 1;
         maxHP += 50;
         healthPoints += 50;
-        healthRegen += 1;
+        healthRegen += 2;
     }
 
     /// <summary>
@@ -152,7 +153,7 @@ public class PlayerStats : MonoBehaviour {
     {
         statPoints -= 1;
         strength += 1;
-        damage += 10;
+        damage += 20;
     }
 
     /// <summary>
@@ -162,7 +163,7 @@ public class PlayerStats : MonoBehaviour {
     {
         statPoints -= 1;
         defense += 1;
-        armor += 5;
+        armor += 8;
         dodge += decimal.Parse("0.5");
     }
 
@@ -173,7 +174,7 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2,helmet-1)*100);
         helmet++;
-        healthRegen += 1;
+        healthRegen += 2;
     }
 
     /// <summary>
@@ -183,7 +184,7 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2, breastplate - 1) * 100);
         breastplate++;
-        armor += 5;
+        armor += 12;
     }
 
     /// <summary>
@@ -193,8 +194,8 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2, pauldrons - 1) * 100);
         pauldrons++;
-        maxHP += 50;
-        healthPoints += 50;
+        maxHP += 75;
+        healthPoints += 75;
     }
 
     /// <summary>
@@ -214,7 +215,7 @@ public class PlayerStats : MonoBehaviour {
     {
         gold -= Convert.ToInt32(Math.Pow(2, rHand - 1) * 100);
         rHand++;
-        damage += 10;
+        damage += 30;
     }
 
     /// <summary>

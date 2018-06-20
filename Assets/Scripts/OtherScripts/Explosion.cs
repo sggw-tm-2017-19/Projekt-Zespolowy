@@ -36,8 +36,8 @@ public class Explosion : MonoBehaviour {
         {
             player.SendMessage("TakeDamage", Damage);
             Rigidbody2D playerRigitbody = player.GetComponent<Rigidbody2D>();
-            Vector2 pushDirection = (player.transform.position - transform.position).normalized;
-            playerRigitbody.AddForce(pushDirection * Force * forceFactor, ForceMode2D.Impulse);
+            //Vector2 pushDirection = (player.transform.position - transform.position).normalized;
+            //playerRigitbody.AddForce(pushDirection * Force * forceFactor, ForceMode2D.Impulse);
             playerHit = true;
         }
     }

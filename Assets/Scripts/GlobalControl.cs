@@ -16,7 +16,7 @@ public class GlobalControl : MonoBehaviour
     public GameObject blacksmith;
     public GameObject Player;
     public int straznikl = 0, straznike = 0, krolowa = 0, starszy = 0;
-    public string qLog = "-Porozmawiaj ze Starszym Wioski";
+    public string qLog = "-Speak with the Village's Elder";
 
     void Awake()
     {
